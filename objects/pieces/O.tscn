@@ -5,7 +5,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w4u7p"]
 size = Vector2(20, 20)
 
-[node name="SquareShape" type="RigidBody2D"]
+[node name="O" type="RigidBody2D"]
 gravity_scale = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

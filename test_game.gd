@@ -9,8 +9,13 @@ var last_piece: RigidBody2D
 
 func _ready():
 	pieces = [
-		preload("res://objects/pieces/square.tscn"),
-		preload("res://objects/pieces/long.tscn"),
+		preload("res://objects/pieces/O.tscn"),
+		preload("res://objects/pieces/I.tscn"),
+		preload("res://objects/pieces/L.tscn"),
+		preload("res://objects/pieces/J.tscn"),
+		preload("res://objects/pieces/T.tscn"),
+		preload("res://objects/pieces/S.tscn"),
+		preload("res://objects/pieces/Z.tscn"),
 	]
 	_spawn_next_piece()
 

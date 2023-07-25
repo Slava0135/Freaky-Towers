@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm0gq01fsf55d"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w4u7p"]
+size = Vector2(10, 30)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_n6g6h"]
+size = Vector2(10, 10)
+
+[node name="L" type="RigidBody2D"]
+gravity_scale = 0.1
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-10, 15, -10, -15, 0, -15, 0, 5, 10, 5, 10, 15)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, 0)
+texture = SubResource("PlaceholderTexture2D_w4u7p")
+region_rect = Rect2(0, 0, 20, 20)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(5, 10)
+texture = SubResource("PlaceholderTexture2D_n6g6h")
