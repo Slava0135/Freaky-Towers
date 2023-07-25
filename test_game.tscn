@@ -1,24 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://dplaqrkj7kcms"]
 
+[ext_resource type="Script" path="res://test_game.gd" id="1_7ure7"]
 [ext_resource type="PackedScene" uid="uid://c5qn7mutme6vc" path="res://objects/islands/flat.tscn" id="1_jvp4t"]
-[ext_resource type="PackedScene" uid="uid://br2ckpdxpc01t" path="res://objects/shapes/square.tscn" id="2_4yin6"]
 
-[node name="Node2D" type="Node2D"]
+[node name="TestGame" type="Node2D"]
+script = ExtResource("1_7ure7")
 
 [node name="FlatIsland" parent="." instance=ExtResource("1_jvp4t")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -2500)
 zoom = Vector2(0.1, 0.1)
-
-[node name="SquareShape" parent="." instance=ExtResource("2_4yin6")]
-position = Vector2(-204, -1589)
-
-[node name="SquareShape2" parent="." instance=ExtResource("2_4yin6")]
-position = Vector2(-77, -2072)
-
-[node name="SquareShape3" parent="." instance=ExtResource("2_4yin6")]
-position = Vector2(12, -2732)
-
-[node name="SquareShape4" parent="." instance=ExtResource("2_4yin6")]
-position = Vector2(-192, -573)
