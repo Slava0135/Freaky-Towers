@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://br2ckpdxpc01t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvpu"]
-size = Vector2(200, 200)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w4u7p"]
-size = Vector2(200, 200)
+size = Vector2(20, 20)
 
 [node name="SquareShape" type="RigidBody2D"]
+gravity_scale = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5jvpu")

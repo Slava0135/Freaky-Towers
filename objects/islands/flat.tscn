@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5qn7mutme6vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogewq"]
-size = Vector2(600, 200)
+size = Vector2(60, 20)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hpxtq"]
-size = Vector2(600, 200)
+size = Vector2(60, 20)
 
 [node name="FlatIsland" type="StaticBody2D"]
 

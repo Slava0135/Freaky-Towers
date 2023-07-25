@@ -9,5 +9,3 @@ script = ExtResource("1_7ure7")
 [node name="FlatIsland" parent="." instance=ExtResource("1_jvp4t")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -2500)
-zoom = Vector2(0.1, 0.1)
