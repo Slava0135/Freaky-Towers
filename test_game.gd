@@ -1,5 +1,7 @@
 extends Node2D
 
+const STEP = 10
+
 var piece_scene
 var last_piece: RigidBody2D
 
@@ -8,7 +10,10 @@ func _ready():
 	_spawn_next_piece()
 
 func _process(delta):
-	pass
+	if Input.is_action_pressed("move_right"):
+		last_piece.position += Vector2(STEP, 0)
+	if Input.is_action_pressed("move_left"):
+		last_piece.position -= Vector2(-STEP, 0)
 
 func _spawn_next_piece():
 	if last_piece != null:
