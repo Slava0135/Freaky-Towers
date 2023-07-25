@@ -1,11 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://br2ckpdxpc01t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvpu"]
-size = Vector2(100, 100)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ptntj"]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="SquareShape" type="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5jvpu")
@@ -14,4 +13,4 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CanvasTexture_ptntj")
 region_enabled = true
-region_rect = Rect2(0, 0, 100, 100)
+region_rect = Rect2(0, 0, 20, 20)
