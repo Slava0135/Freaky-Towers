@@ -2,7 +2,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvpu"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_ptntj"]
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w4u7p"]
+size = Vector2(20, 20)
 
 [node name="SquareShape" type="RigidBody2D"]
 
@@ -11,6 +12,6 @@ shape = SubResource("RectangleShape2D_5jvpu")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("CanvasTexture_ptntj")
+texture = SubResource("PlaceholderTexture2D_w4u7p")
 region_enabled = true
 region_rect = Rect2(0, 0, 20, 20)
