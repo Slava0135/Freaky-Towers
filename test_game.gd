@@ -16,14 +16,18 @@ func _ready():
 
 func _process(delta):
 	var collision
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("fast_drop"):
 		collision = last_piece.move_and_collide(Vector2(0, FAST_DROP_SPEED * delta))
 	else:
 		collision = last_piece.move_and_collide(Vector2(0, DROP_SPEED * delta))
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("move_right"):
 		collision = last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_just_pressed("move_left"):
 		collision = last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
+	if Input.is_action_just_pressed("rotate_clockwise"):
+		last_piece.rotate(PI / 2)
+	if Input.is_action_just_pressed("rotate_anticlockwise"):
+		last_piece.rotate(-PI / 2)
 	if collision != null:
 		_spawn_next_piece()
 
