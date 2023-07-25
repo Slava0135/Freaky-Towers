@@ -27,6 +27,7 @@ func _process(delta):
 func _spawn_next_piece():
 	if last_piece != null:
 		last_piece.freeze = false
+		last_piece.linear_velocity = Vector2.ZERO
 	last_piece = piece_scene.instantiate()
 	last_piece.move_local_y(-250)
 	last_piece.freeze = true
