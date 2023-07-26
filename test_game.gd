@@ -14,7 +14,7 @@ const CAMERA_MAX_ZOOM = 3
 
 class PieceData:
 	var scene: PackedScene
-	var rot_width: Array[float] # 0 - unrotated width, 1 - rotated width
+	var rot_width: Array[float]
 
 	static func create(scene: PackedScene, rot_width: Array[float]) -> PieceData:
 		var it = PieceData.new()
@@ -94,7 +94,7 @@ func update_movement(delta):
 		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
 
 func update_camera(delta):
-	var cam: Camera2D = get_node("Camera")
+	var cam = get_node("Camera") as Camera2D
 	var highest = last_highest_y - CAMERA_HIGH_OFFSET
 	var lowest = CAMERA_LOW_OFFSET
 	var mid = (highest + lowest) / 2
@@ -105,7 +105,7 @@ func update_camera(delta):
 	cam.zoom = lerp(cam.zoom, zoom * Vector2.ONE, delta)
 
 func update_beam():
-	var beam: Node2D = get_node("BeamBorder")
+	var beam = get_node("BeamBorder") as Node2D
 	beam.position = last_piece.position
 	var width = last_piece_data.width(last_piece.rotation)
 	beam.scale = Vector2(width, 1000000)
@@ -114,6 +114,8 @@ func spawn_next_piece():
 	if last_piece != null:
 		last_piece.freeze = false
 		last_piece.linear_velocity = Vector2.ZERO
+		last_piece.get_child(0).disabled = true
+		last_piece.get_child(1).disabled = false
 	last_piece_data = pieces.pick_random() as PieceData
 	last_piece = last_piece_data.scene.instantiate()
 	last_piece.freeze = true
@@ -121,6 +123,8 @@ func spawn_next_piece():
 	reset_rotation()
 	last_highest_y = find_highest_y() - SPAWN_OFFSET
 	last_piece.move_local_y(last_highest_y)
+	last_piece.get_child(0).disabled = false
+	last_piece.get_child(1).disabled = true
 	get_node("ExistingPieces").add_child(last_piece)
 
 func find_highest_y() -> float:

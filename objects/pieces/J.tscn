@@ -5,7 +5,10 @@
 [node name="J" type="RigidBody2D"]
 gravity_scale = 0.1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygonSmall" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(9, 14, 9, -14, 1, -14, 1, 6, -9, 6, -9, 14)
+
+[node name="CollisionPolygonNormal" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(10, 15, 10, -15, 0, -15, 0, 5, -10, 5, -10, 15)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -5,8 +5,11 @@
 [node name="Z" type="RigidBody2D"]
 gravity_scale = 0.1
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-5, 10, -5, 0, -15, 0, -15, -10, 5, -10, 5, 0, 15, 0, 15, 10, 5, 10)
+[node name="CollisionPolygonSmall" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, 9, -4, -1, -14, -1, -14, -9, 4, -9, 4, 1, 14, 1, 14, 9)
+
+[node name="CollisionPolygonNormal" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-5, 10, -5, 0, -15, 0, -15, -10, 5, -10, 5, 0, 15, 0, 15, 10)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_80m0f")

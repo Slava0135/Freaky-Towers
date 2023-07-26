@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://br2ckpdxpc01t"]
+[gd_scene load_steps=4 format=3 uid="uid://br2ckpdxpc01t"]
 
 [ext_resource type="Texture2D" uid="uid://dy8hf57mwlfo1" path="res://objects/pieces/O.png" id="1_ut83p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyylj"]
+size = Vector2(18, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvpu"]
 
 [node name="O" type="RigidBody2D"]
 gravity_scale = 0.1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShapeSmall" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uyylj")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="CollisionShapeNormal" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5jvpu")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
