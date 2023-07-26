@@ -1,9 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1iy502wyjnwb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvpu"]
-size = Vector2(10, 40)
+[ext_resource type="Texture2D" uid="uid://b2inc4amqelhd" path="res://objects/pieces/I.png" id="1_l4x7e"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_w4u7p"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jvpu"]
 size = Vector2(10, 40)
 
 [node name="I" type="RigidBody2D"]
@@ -14,5 +13,5 @@ shape = SubResource("RectangleShape2D_5jvpu")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_w4u7p")
+texture = ExtResource("1_l4x7e")
 region_rect = Rect2(0, 0, 20, 20)
