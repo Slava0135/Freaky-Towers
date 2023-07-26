@@ -2,7 +2,7 @@ extends Node2D
 
 const SIDE_STEP = 5
 const DROP_SPEED = 50
-const FAST_DROP_SPEED = 2 * DROP_SPEED
+const FAST_DROP_SPEED = 3 * DROP_SPEED
 
 var pieces: Array[PackedScene]
 var last_piece: RigidBody2D
