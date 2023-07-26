@@ -1,15 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5qn7mutme6vc"]
+[gd_scene load_steps=2 format=3 uid="uid://c5qn7mutme6vc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogewq"]
-size = Vector2(60, 20)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hpxtq"]
-size = Vector2(60, 20)
+[ext_resource type="Texture2D" uid="uid://beuemayh3e5i2" path="res://objects/islands/flat.png" id="1_okse6"]
 
 [node name="FlatIsland" type="StaticBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ogewq")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-30, 5, -20, 5, -20, 15, 20, 15, 20, 5, 30, 5, 30, -15, -30, -15)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_hpxtq")
+texture = ExtResource("1_okse6")
