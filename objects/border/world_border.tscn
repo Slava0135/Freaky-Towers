@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6r7saxpscnfv"]
+
+[ext_resource type="Script" path="res://objects/border/world_border.gd" id="1_wwuiu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sfgac"]
+
+[node name="WorldBorder" type="Area2D"]
+script = ExtResource("1_wwuiu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("WorldBoundaryShape2D_sfgac")

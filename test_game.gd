@@ -27,6 +27,8 @@ var elapsed: float
 var rotate: bool
 
 func _process(delta):
+	if last_piece == null:
+		spawn_next_piece()
 	var collision
 	if Input.is_action_pressed("fast_drop"):
 		collision = last_piece.move_and_collide(Vector2(0, FAST_DROP_SPEED * delta))
@@ -55,6 +57,11 @@ func _process(delta):
 
 	if collision != null:
 		spawn_next_piece()
+
+	if Input.is_action_just_pressed("nudge_right"):
+		last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
+	if Input.is_action_just_pressed("nudge_left"):
+		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
 
 func spawn_next_piece():
 	if last_piece != null:
