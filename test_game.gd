@@ -7,6 +7,8 @@ const ROTATION_SPEED = 8
 
 const SPAWN_OFFSET = 200
 
+const CAMERA_LOW_OFFSET = 50
+
 var pieces: Array[PackedScene]
 
 func _ready():
@@ -33,6 +35,7 @@ func _process(delta):
 		spawn_next_piece()
 	update_movement(delta)
 	update_rotation(delta)
+	update_camera(delta)
 
 func update_rotation(delta):
 	if not rotate:
@@ -71,6 +74,13 @@ func update_movement(delta):
 	if Input.is_action_just_pressed("nudge_left"):
 		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
 
+func update_camera(delta):
+	var cam: Camera2D = get_node("Camera")
+	var highest = find_highest_y()
+	var lowest = CAMERA_LOW_OFFSET
+	var mid = (highest + lowest) / 2
+	cam.position = lerp(cam.position, Vector2(0, mid), delta)
+
 func spawn_next_piece():
 	if last_piece != null:
 		last_piece.freeze = false
@@ -79,12 +89,14 @@ func spawn_next_piece():
 	last_piece.freeze = true
 	last_piece.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 	reset_rotation()
-	var existing_pieces = get_node("ExistingPieces")
-	var spawn_height = 0
-	for child in existing_pieces.get_children():
-		spawn_height = min(child.position.y, spawn_height)
-	last_piece.move_local_y(spawn_height - SPAWN_OFFSET)
-	existing_pieces.add_child(last_piece)
+	last_piece.move_local_y(find_highest_y() - SPAWN_OFFSET)
+	get_node("ExistingPieces").add_child(last_piece)
+
+func find_highest_y() -> float:
+	var highest = 0
+	for child in get_node("ExistingPieces").get_children():
+		highest = min(child.position.y, highest)
+	return highest
 
 func reset_rotation():
 	prev_rotation = 0
