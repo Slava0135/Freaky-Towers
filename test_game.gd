@@ -12,21 +12,32 @@ const CAMERA_HIGH_OFFSET = 50
 const CAMERA_MIN_ZOOM = 1
 const CAMERA_MAX_ZOOM = 3
 
-var pieces: Array[PackedScene]
+class Piece:
+	var scene: PackedScene
+	var rot_width: Array[float] # 0 - unrotated width, 1 - rotated width
+
+	static func create(scene: PackedScene, rot_width: Array[float]) -> Piece:
+		var it = Piece.new()
+		it.scene = scene
+		it.rot_width = rot_width
+		return it
+
+var pieces: Array[Piece]
 
 func _ready():
 	pieces = [
-		preload("res://objects/pieces/O.tscn"),
-		preload("res://objects/pieces/I.tscn"),
-		preload("res://objects/pieces/L.tscn"),
-		preload("res://objects/pieces/J.tscn"),
-		preload("res://objects/pieces/T.tscn"),
-		preload("res://objects/pieces/S.tscn"),
-		preload("res://objects/pieces/Z.tscn"),
+		Piece.create(preload("res://objects/pieces/O.tscn"), [2, 2]),
+		Piece.create(preload("res://objects/pieces/I.tscn"), [1, 4]),
+		Piece.create(preload("res://objects/pieces/L.tscn"), [2, 3]),
+		Piece.create(preload("res://objects/pieces/J.tscn"), [2, 3]),
+		Piece.create(preload("res://objects/pieces/T.tscn"), [3, 2]),
+		Piece.create(preload("res://objects/pieces/S.tscn"), [3, 2]),
+		Piece.create(preload("res://objects/pieces/Z.tscn"), [3, 2]),
 	]
 	spawn_next_piece()
 
 var last_piece: RigidBody2D
+var last_piece_rot_width: Array[float]
 var last_highest_y: float
 
 var prev_rotation: float
@@ -93,13 +104,16 @@ func update_camera(delta):
 func update_beam():
 	var beam: Node2D = get_node("BeamBorder")
 	beam.position = last_piece.position
-	beam.scale = Vector2(1, 1000000)
+	var width = last_piece_rot_width[roundi(sin(last_piece.rotation))]
+	beam.scale = Vector2(width, 1000000)
 
 func spawn_next_piece():
 	if last_piece != null:
 		last_piece.freeze = false
 		last_piece.linear_velocity = Vector2.ZERO
-	last_piece = pieces.pick_random().instantiate()
+	var next = pieces.pick_random() as Piece
+	last_piece_rot_width = next.rot_width
+	last_piece = next.scene.instantiate()
 	last_piece.freeze = true
 	last_piece.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 	reset_rotation()
