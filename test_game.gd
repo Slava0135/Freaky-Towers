@@ -5,6 +5,8 @@ const DROP_SPEED = 50
 const FAST_DROP_SPEED = 3 * DROP_SPEED
 const ROTATION_SPEED = 8
 
+const SPAWN_OFFSET = 200
+
 var pieces: Array[PackedScene]
 
 func _ready():
@@ -29,15 +31,10 @@ var rotate: bool
 func _process(delta):
 	if last_piece == null:
 		spawn_next_piece()
-	var collision
-	if Input.is_action_pressed("fast_drop"):
-		collision = last_piece.move_and_collide(Vector2(0, FAST_DROP_SPEED * delta))
-	else:
-		collision = last_piece.move_and_collide(Vector2(0, DROP_SPEED * delta))
-	if Input.is_action_just_pressed("move_right"):
-		collision = last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
-	if Input.is_action_just_pressed("move_left"):
-		collision = last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
+	update_movement(delta)
+	update_rotation(delta)
+
+func update_rotation(delta):
 	if not rotate:
 		if Input.is_action_just_pressed("rotate_clockwise"):
 			prev_rotation = last_piece.rotation
@@ -55,6 +52,17 @@ func _process(delta):
 			elapsed = 0
 			rotate = false
 
+func update_movement(delta):
+	var collision
+	if Input.is_action_pressed("fast_drop"):
+		collision = last_piece.move_and_collide(Vector2(0, FAST_DROP_SPEED * delta))
+	else:
+		collision = last_piece.move_and_collide(Vector2(0, DROP_SPEED * delta))
+	if Input.is_action_just_pressed("move_right"):
+		collision = last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
+	if Input.is_action_just_pressed("move_left"):
+		collision = last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
+
 	if collision != null:
 		spawn_next_piece()
 
@@ -68,11 +76,15 @@ func spawn_next_piece():
 		last_piece.freeze = false
 		last_piece.linear_velocity = Vector2.ZERO
 	last_piece = pieces.pick_random().instantiate()
-	last_piece.move_local_y(-250)
 	last_piece.freeze = true
 	last_piece.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 	reset_rotation()
-	get_node(".").add_child(last_piece)
+	var existing_pieces = get_node("ExistingPieces")
+	var spawn_height = 0
+	for child in existing_pieces.get_children():
+		spawn_height = min(child.position.y, spawn_height)
+	last_piece.move_local_y(spawn_height - SPAWN_OFFSET)
+	existing_pieces.add_child(last_piece)
 
 func reset_rotation():
 	prev_rotation = 0

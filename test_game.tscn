@@ -9,7 +9,9 @@ script = ExtResource("1_7ure7")
 
 [node name="FlatIsland" parent="." instance=ExtResource("1_jvp4t")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 
 [node name="WorldBorder" parent="." instance=ExtResource("3_w8h5n")]
 position = Vector2(0, 45)
+
+[node name="ExistingPieces" type="Node2D" parent="."]
