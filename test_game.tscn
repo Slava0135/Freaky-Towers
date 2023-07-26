@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dplaqrkj7kcms"]
+[gd_scene load_steps=5 format=3 uid="uid://dplaqrkj7kcms"]
 
 [ext_resource type="Script" path="res://test_game.gd" id="1_7ure7"]
 [ext_resource type="PackedScene" uid="uid://c5qn7mutme6vc" path="res://objects/islands/flat.tscn" id="1_jvp4t"]
 [ext_resource type="PackedScene" uid="uid://c6r7saxpscnfv" path="res://objects/border/world_border.tscn" id="3_w8h5n"]
+[ext_resource type="PackedScene" uid="uid://cjln11w8wsifb" path="res://objects/border/beam_border.tscn" id="4_gke7o"]
 
 [node name="TestGame" type="Node2D"]
 script = ExtResource("1_7ure7")
@@ -15,3 +16,6 @@ script = ExtResource("1_7ure7")
 position = Vector2(0, 45)
 
 [node name="ExistingPieces" type="Node2D" parent="."]
+
+[node name="BeamBorder" parent="." instance=ExtResource("4_gke7o")]
+position = Vector2(0, 76)

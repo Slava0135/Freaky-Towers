@@ -40,6 +40,7 @@ func _process(delta):
 	update_movement(delta)
 	update_rotation(delta)
 	update_camera(delta)
+	update_beam()
 
 func update_rotation(delta):
 	if not rotate:
@@ -88,6 +89,11 @@ func update_camera(delta):
 	var view_h = abs(get_viewport_rect().size.y)
 	var zoom = clampf(view_h / height, CAMERA_MIN_ZOOM, CAMERA_MAX_ZOOM)
 	cam.zoom = lerp(cam.zoom, zoom * Vector2.ONE, delta)
+
+func update_beam():
+	var beam: Node2D = get_node("BeamBorder")
+	beam.position = last_piece.position
+	beam.scale = Vector2(1, 1000000)
 
 func spawn_next_piece():
 	if last_piece != null:

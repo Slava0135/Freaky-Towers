@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjln11w8wsifb"]
+
+[ext_resource type="Texture2D" uid="uid://cmkrwuw4ef0ad" path="res://objects/border/beam_border.png" id="1_hcl7a"]
+
+[node name="BeamBorder" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_hcl7a")
