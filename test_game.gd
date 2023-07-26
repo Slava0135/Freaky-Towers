@@ -8,6 +8,9 @@ const ROTATION_SPEED = 8
 const SPAWN_OFFSET = 200
 
 const CAMERA_LOW_OFFSET = 50
+const CAMERA_HIGH_OFFSET = 50
+const CAMERA_MIN_ZOOM = 1
+const CAMERA_MAX_ZOOM = 3
 
 var pieces: Array[PackedScene]
 
@@ -76,10 +79,14 @@ func update_movement(delta):
 
 func update_camera(delta):
 	var cam: Camera2D = get_node("Camera")
-	var highest = find_highest_y()
+	var highest = find_highest_y() - CAMERA_HIGH_OFFSET
 	var lowest = CAMERA_LOW_OFFSET
 	var mid = (highest + lowest) / 2
 	cam.position = lerp(cam.position, Vector2(0, mid), delta)
+	var height = abs(highest - lowest)
+	var view_h = abs(get_viewport_rect().size.y)
+	var zoom = clampf(view_h / height, CAMERA_MIN_ZOOM, CAMERA_MAX_ZOOM)
+	cam.zoom = lerp(cam.zoom, zoom * Vector2.ONE, delta)
 
 func spawn_next_piece():
 	if last_piece != null:
