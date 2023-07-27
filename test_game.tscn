@@ -31,9 +31,9 @@ position = Vector2(0, 76)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -41.0
-offset_right = 41.0
-offset_bottom = 50.0
+offset_left = -18.5
+offset_right = 18.5
+offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 10
 
@@ -43,7 +43,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="UI/NextPieceContainer/VBox"]
 layout_mode = 2
-text = "Next Piece"
+text = "Next"
 horizontal_alignment = 1
 
 [node name="Texture" type="TextureRect" parent="UI/NextPieceContainer/VBox"]
