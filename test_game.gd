@@ -110,7 +110,7 @@ func spawn_next_piece():
 
 func pick_next_piece():
 	next_piece_data = piece_loader.random_piece()
-	var next_piece_box = get_node("UI/NextPieceBox") as TextureRect
+	var next_piece_box = get_node("UI/NextPieceContainer/VBox/Texture") as TextureRect
 	var piece_sprite = next_piece_data.scene.instantiate().get_child(2) as Sprite2D
 	next_piece_box.texture = piece_sprite.texture
 
