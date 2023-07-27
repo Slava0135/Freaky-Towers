@@ -49,3 +49,19 @@ horizontal_alignment = 1
 [node name="Texture" type="TextureRect" parent="UI/NextPieceContainer/VBox"]
 layout_mode = 2
 stretch_mode = 5
+
+[node name="PieceCount" type="Label" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

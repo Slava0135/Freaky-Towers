@@ -39,6 +39,10 @@ func _process(delta):
 	update_rotation(delta)
 	update_camera(delta)
 	update_beam()
+	update_ui()
+
+func update_ui():
+	$UI/PieceCount.text = str($Level/ExistingPieces.get_child_count() - 1)
 
 func update_rotation(delta):
 	if not rotate:
@@ -113,7 +117,7 @@ func spawn_next_piece():
 	last_piece.move_local_y(last_highest_y)
 	last_piece.get_child(0).disabled = false
 	last_piece.get_child(1).disabled = true
-	get_node("Level/ExistingPieces").add_child(last_piece)
+	$Level/ExistingPieces.add_child(last_piece)
 	pick_next_piece()
 
 func pick_next_piece():
