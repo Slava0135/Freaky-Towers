@@ -6,4 +6,6 @@ night.jpg - "a black and white photo of the moon in a cloudy sky" - Photo by [Ta
 
 ## Sounds
 
-drop_sound.wav - [Carton_impact_5.wav by andresix](https://freesound.org/people/andresix/sounds/245617/)
+drop.wav - [Carton_impact_5.wav by andresix](https://freesound.org/people/andresix/sounds/245617/)
+
+poof.mp3 - [Poof in cloud.mp3 by Herkules92](https://freesound.org/people/Herkules92/sounds/512217/)
