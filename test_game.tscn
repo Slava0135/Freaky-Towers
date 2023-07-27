@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cjln11w8wsifb" path="res://objects/border/beam_border.tscn" id="4_gke7o"]
 [ext_resource type="AudioStream" uid="uid://cfahewdy234o1" path="res://sounds/drop_sound.wav" id="5_0ku8v"]
 [ext_resource type="PackedScene" uid="uid://dblt1py4a0toj" path="res://interface/pause_popup.tscn" id="5_rnsru"]
-[ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/talha-imam-1jkQi8hgTaw-unsplash.jpg" id="6_o5223"]
+[ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="7_17nn2"]
 
 [node name="TestGame" type="Node2D"]
 script = ExtResource("1_7ure7")
@@ -78,4 +78,4 @@ motion_scale = Vector2(1, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_o5223")
+texture = ExtResource("7_17nn2")
