@@ -77,9 +77,9 @@ func update_movement(delta):
 		spawn_next_piece()
 
 	if Input.is_action_just_pressed("nudge_right"):
-		last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
+		last_piece.move_and_collide(Vector2(SIDE_STEP, 0), false, 0, false)
 	if Input.is_action_just_pressed("nudge_left"):
-		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
+		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0), false, 0, false)
 
 func update_camera(delta):
 	var cam = get_node("Level/Camera") as Camera2D
