@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5qn7mutme6vc"]
 
-[ext_resource type="Texture2D" uid="uid://beuemayh3e5i2" path="res://objects/islands/flat.png" id="1_okse6"]
+[ext_resource type="Texture2D" uid="uid://cgaj36s05gxfs" path="res://objects/islands/flat.png" id="1_okse6"]
 
 [node name="FlatIsland" type="StaticBody2D"]
 
