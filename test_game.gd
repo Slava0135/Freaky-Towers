@@ -5,6 +5,8 @@ const DROP_SPEED = 50
 const FAST_DROP_SPEED = 3 * DROP_SPEED
 const ROTATION_SPEED = 8
 
+const INPUT_DELAY = 0.1
+
 const SPAWN_OFFSET = 200
 
 const CAMERA_LOW_OFFSET = 50
@@ -27,6 +29,8 @@ var prev_rotation: float
 var next_rotation: float
 var elapsed: float
 var rotate: bool
+
+var next_input_delay: float
 
 func _process(delta):
 	if last_piece == null:
@@ -60,10 +64,14 @@ func update_movement(delta):
 		collision = last_piece.move_and_collide(Vector2(0, FAST_DROP_SPEED * delta))
 	else:
 		collision = last_piece.move_and_collide(Vector2(0, DROP_SPEED * delta))
-	if Input.is_action_just_pressed("move_right"):
+
+	next_input_delay -= delta
+	if next_input_delay <= 0 and Input.is_action_pressed("move_right"):
 		collision = last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
-	if Input.is_action_just_pressed("move_left"):
+		next_input_delay = INPUT_DELAY
+	if next_input_delay <= 0 and Input.is_action_pressed("move_left"):
 		collision = last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
+		next_input_delay = INPUT_DELAY
 
 	if collision != null:
 		spawn_next_piece()
