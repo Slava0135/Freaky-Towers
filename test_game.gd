@@ -12,35 +12,13 @@ const CAMERA_HIGH_OFFSET = 50
 const CAMERA_MIN_ZOOM = 1
 const CAMERA_MAX_ZOOM = 3
 
-class PieceData:
-	var scene: PackedScene
-	var rot_width: Array[float]
-
-	static func create(scene: PackedScene, rot_width: Array[float]) -> PieceData:
-		var it = PieceData.new()
-		it.scene = scene
-		it.rot_width = rot_width
-		return it
-
-	func width(rotation: float) -> float:
-		return rot_width[roundi(sin(rotation))]
-
-var pieces: Array[PieceData]
+var piece_loader = PieceLoad.new()
 
 func _ready():
-	pieces = [
-		PieceData.create(preload("res://objects/pieces/O.tscn"), [2, 2]),
-		PieceData.create(preload("res://objects/pieces/I.tscn"), [1, 4]),
-		PieceData.create(preload("res://objects/pieces/L.tscn"), [2, 3]),
-		PieceData.create(preload("res://objects/pieces/J.tscn"), [2, 3]),
-		PieceData.create(preload("res://objects/pieces/T.tscn"), [3, 2]),
-		PieceData.create(preload("res://objects/pieces/S.tscn"), [3, 2]),
-		PieceData.create(preload("res://objects/pieces/Z.tscn"), [3, 2]),
-	]
 	spawn_next_piece()
 
 var last_piece: RigidBody2D
-var last_piece_data: PieceData
+var last_piece_data: PieceLoad.PieceData
 var last_highest_y: float
 
 var prev_rotation: float
@@ -116,7 +94,7 @@ func spawn_next_piece():
 		last_piece.linear_velocity = Vector2.ZERO
 		last_piece.get_child(0).disabled = true
 		last_piece.get_child(1).disabled = false
-	last_piece_data = pieces.pick_random() as PieceData
+	last_piece_data = piece_loader.random_piece()
 	last_piece = last_piece_data.scene.instantiate()
 	last_piece.freeze = true
 	last_piece.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
