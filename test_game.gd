@@ -108,6 +108,7 @@ func spawn_next_piece():
 		last_piece.linear_velocity = Vector2.ZERO
 		last_piece.get_child(0).disabled = true
 		last_piece.get_child(1).disabled = false
+		$Level/DropAudio.play()
 	last_piece_data = next_piece_data
 	last_piece = last_piece_data.scene.instantiate()
 	last_piece.freeze = true
