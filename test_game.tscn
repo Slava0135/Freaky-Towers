@@ -9,16 +9,20 @@
 [node name="TestGame" type="Node2D"]
 script = ExtResource("1_7ure7")
 
-[node name="FlatIsland" parent="." instance=ExtResource("1_jvp4t")]
+[node name="Level" type="Node2D" parent="."]
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="FlatIsland" parent="Level" instance=ExtResource("1_jvp4t")]
 
-[node name="WorldBorder" parent="." instance=ExtResource("3_w8h5n")]
+[node name="Camera" type="Camera2D" parent="Level"]
+
+[node name="WorldBorder" parent="Level" instance=ExtResource("3_w8h5n")]
 position = Vector2(0, 45)
 
-[node name="ExistingPieces" type="Node2D" parent="."]
+[node name="ExistingPieces" type="Node2D" parent="Level"]
 
-[node name="BeamBorder" parent="." instance=ExtResource("4_gke7o")]
+[node name="BeamBorder" parent="Level" instance=ExtResource("4_gke7o")]
 position = Vector2(0, 76)
 
-[node name="PauseMenu" parent="." instance=ExtResource("5_rnsru")]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("5_rnsru")]

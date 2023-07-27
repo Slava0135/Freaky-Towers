@@ -72,7 +72,7 @@ func update_movement(delta):
 		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
 
 func update_camera(delta):
-	var cam = get_node("Camera") as Camera2D
+	var cam = get_node("Level/Camera") as Camera2D
 	var highest = last_highest_y - CAMERA_HIGH_OFFSET
 	var lowest = CAMERA_LOW_OFFSET
 	var mid = (highest + lowest) / 2
@@ -83,7 +83,7 @@ func update_camera(delta):
 	cam.zoom = lerp(cam.zoom, zoom * Vector2.ONE, delta)
 
 func update_beam():
-	var beam = get_node("BeamBorder") as Node2D
+	var beam = get_node("Level/BeamBorder") as Node2D
 	beam.position = last_piece.position
 	var width = last_piece_data.width(last_piece.rotation)
 	beam.scale = Vector2(width, 1000000)
@@ -103,11 +103,11 @@ func spawn_next_piece():
 	last_piece.move_local_y(last_highest_y)
 	last_piece.get_child(0).disabled = false
 	last_piece.get_child(1).disabled = true
-	get_node("ExistingPieces").add_child(last_piece)
+	get_node("Level/ExistingPieces").add_child(last_piece)
 
 func find_highest_y() -> float:
 	var highest = 0
-	for child in get_node("ExistingPieces").get_children():
+	for child in get_node("Level/ExistingPieces").get_children():
 		highest = min(child.position.y, highest)
 	return highest
 
