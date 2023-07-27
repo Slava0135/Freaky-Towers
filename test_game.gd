@@ -15,10 +15,12 @@ const CAMERA_MAX_ZOOM = 3
 var piece_loader = PieceLoad.new()
 
 func _ready():
+	pick_next_piece()
 	spawn_next_piece()
 
 var last_piece: RigidBody2D
 var last_piece_data: PieceLoad.PieceData
+var next_piece_data: PieceLoad.PieceData
 var last_highest_y: float
 
 var prev_rotation: float
@@ -94,7 +96,7 @@ func spawn_next_piece():
 		last_piece.linear_velocity = Vector2.ZERO
 		last_piece.get_child(0).disabled = true
 		last_piece.get_child(1).disabled = false
-	last_piece_data = piece_loader.random_piece()
+	last_piece_data = next_piece_data
 	last_piece = last_piece_data.scene.instantiate()
 	last_piece.freeze = true
 	last_piece.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
@@ -104,6 +106,13 @@ func spawn_next_piece():
 	last_piece.get_child(0).disabled = false
 	last_piece.get_child(1).disabled = true
 	get_node("Level/ExistingPieces").add_child(last_piece)
+	pick_next_piece()
+
+func pick_next_piece():
+	next_piece_data = piece_loader.random_piece()
+	var next_piece_box = get_node("UI/NextPieceBox") as TextureRect
+	var piece_sprite = next_piece_data.scene.instantiate().get_child(2) as Sprite2D
+	next_piece_box.texture = piece_sprite.texture
 
 func find_highest_y() -> float:
 	var highest = 0
