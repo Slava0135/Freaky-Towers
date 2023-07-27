@@ -1,14 +1,15 @@
 extends Area2D
 
-# Called when the node enters the scene tree for the first time.
+var effect = preload("res://effects/vanish.tscn")
+
 func _ready():
-	body_entered.connect(_remove_body)
-	pass # Replace with function body.
+	body_entered.connect(remove_body)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func _remove_body(body: Node2D):
+func remove_body(body: Node2D):
+	var e = effect.instantiate() as Node2D
+	add_sibling(e)
+	e.position = body.position
 	body.queue_free()

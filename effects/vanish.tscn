@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://kh3b6vp4klon"]
+
+[sub_resource type="Animation" id="Animation_sply1"]
+resource_name = "vanish"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_r5rki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pt425"]
+_data = {
+"RESET": SubResource("Animation_r5rki"),
+"vanish": SubResource("Animation_sply1")
+}
+
+[node name="Vanish" type="CPUParticles2D"]
+emitting = false
+amount = 16
+lifetime = 0.2
+one_shot = true
+lifetime_randomness = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "vanish"
+libraries = {
+"": SubResource("AnimationLibrary_pt425")
+}
