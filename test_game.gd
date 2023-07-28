@@ -176,4 +176,6 @@ func update_health(delta):
 		health = clampi(health - 1, 0, MAX_HEALTH)
 		$UI/HeartContainer/Margin/HBox.get_child(health).visible = false
 		grace_time = GRACE_TIME
+	if health <= 0:
+		get_tree().reload_current_scene()
 	n_pieces = n
