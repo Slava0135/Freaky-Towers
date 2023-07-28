@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dthjcv0krwl2k"]
+
+[ext_resource type="Texture2D" uid="uid://baugshgemo58f" path="res://interface/heart.png" id="1_lo0y0"]
+[ext_resource type="Script" path="res://interface/health_bar.gd" id="1_x6xnb"]
+
+[node name="HealthBar" type="PanelContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.0
+offset_bottom = 46.0
+grow_horizontal = 0
+script = ExtResource("1_x6xnb")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+alignment = 2
+
+[node name="Heart1" type="TextureRect" parent="Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("1_lo0y0")
+stretch_mode = 5
+
+[node name="Heart2" type="TextureRect" parent="Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("1_lo0y0")
+stretch_mode = 5
+
+[node name="Heart3" type="TextureRect" parent="Margin/HBox"]
+layout_mode = 2
+texture = ExtResource("1_lo0y0")
+stretch_mode = 5

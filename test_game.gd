@@ -22,7 +22,7 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 
 @onready var piece_counter = $UI/PieceCount as Label
 @onready var next_piece_texture = $UI/NextPieceContainer/VBox/Texture as TextureRect
-@onready var heart_box = $UI/HeartContainer/Margin/HBox as Node2D # doesn't work???
+@onready var health_bar = $UI/HealthBar as HealthBar
 @onready var existing_pieces = $Level/ExistingPieces as Node2D
 @onready var camera = $Level/Camera as Camera2D
 @onready var drop_audio = $Level/DropAudio as AudioStreamPlayer2D
@@ -30,7 +30,6 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var health_cooldown = $Level/HealthCooldown as Timer
 
 func _ready():
-	heart_box = $UI/HeartContainer/Margin/HBox
 	pick_next_piece()
 	spawn_next_piece()
 
@@ -175,7 +174,7 @@ func reset_rotation():
 func _on_world_border_piece_fell():
 	if health_cooldown.is_stopped():
 		health = clampi(health - 1, 0, MAX_HEALTH)
-		heart_box.get_child(health).visible = false
+		health_bar.remove_heart(health)
 		health_cooldown.start()
 	if health <= 0:
 		get_tree().reload_current_scene()

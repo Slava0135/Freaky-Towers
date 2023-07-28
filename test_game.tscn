@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cjln11w8wsifb" path="res://objects/border/beam_border.tscn" id="4_gke7o"]
 [ext_resource type="AudioStream" uid="uid://cfahewdy234o1" path="res://sounds/drop.wav" id="5_lhp3p"]
 [ext_resource type="PackedScene" uid="uid://dblt1py4a0toj" path="res://interface/pause_popup.tscn" id="5_rnsru"]
+[ext_resource type="PackedScene" uid="uid://dthjcv0krwl2k" path="res://interface/health_bar.tscn" id="7_1k16p"]
 [ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="7_17nn2"]
-[ext_resource type="Texture2D" uid="uid://baugshgemo58f" path="res://interface/heart.png" id="7_qv6jd"]
 
 [node name="TestGame" type="Node2D"]
 script = ExtResource("1_7ure7")
@@ -77,39 +77,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HeartContainer" type="PanelContainer" parent="UI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -124.0
-offset_bottom = 46.0
-grow_horizontal = 0
-
-[node name="Margin" type="MarginContainer" parent="UI/HeartContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBox" type="HBoxContainer" parent="UI/HeartContainer/Margin"]
-layout_mode = 2
-alignment = 2
-
-[node name="Heart1" type="TextureRect" parent="UI/HeartContainer/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("7_qv6jd")
-stretch_mode = 5
-
-[node name="Heart2" type="TextureRect" parent="UI/HeartContainer/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("7_qv6jd")
-stretch_mode = 5
-
-[node name="Heart3" type="TextureRect" parent="UI/HeartContainer/Margin/HBox"]
-layout_mode = 2
-texture = ExtResource("7_qv6jd")
-stretch_mode = 5
+[node name="HealthBar" parent="UI" instance=ExtResource("7_1k16p")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
