@@ -178,3 +178,6 @@ func _on_world_border_piece_fell():
 		health_cooldown.start()
 	if health <= 0:
 		get_tree().reload_current_scene()
+
+func _on_health_cooldown_timeout():
+	health_bar.stop_animation()

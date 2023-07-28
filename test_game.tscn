@@ -89,3 +89,4 @@ motion_scale = Vector2(1, 0.25)
 texture = ExtResource("7_17nn2")
 
 [connection signal="piece_fell" from="Level/WorldBorder" to="." method="_on_world_border_piece_fell"]
+[connection signal="timeout" from="Level/HealthCooldown" to="." method="_on_health_cooldown_timeout"]

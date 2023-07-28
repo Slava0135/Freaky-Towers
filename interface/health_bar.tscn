@@ -37,3 +37,8 @@ stretch_mode = 5
 layout_mode = 2
 texture = ExtResource("1_lo0y0")
 stretch_mode = 5
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_animation_timer_timeout"]
