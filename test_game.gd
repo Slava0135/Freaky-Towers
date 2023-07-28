@@ -86,14 +86,19 @@ func update_movement(delta):
 		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0), false, 0, false)
 
 func update_camera(delta):
-	var cam = get_node("Level/Camera") as Camera2D
+	var cam = $Level/Camera as Camera2D
 	var highest = last_highest_y - CAMERA_HIGH_OFFSET
 	var lowest = CAMERA_LOW_OFFSET
 	var mid = (highest + lowest) / 2
-	cam.position = lerp(cam.position, Vector2(0, mid), delta)
 	var height = abs(highest - lowest)
 	var view_h = abs(get_viewport_rect().size.y)
+	var pos = Vector2(0, mid)
 	var zoom = clampf(view_h / height, CAMERA_MIN_ZOOM, CAMERA_MAX_ZOOM)
+
+	if is_equal_approx(zoom, CAMERA_MIN_ZOOM):
+		pos = Vector2(0, highest + view_h / zoom / 2)
+
+	cam.position = lerp(cam.position, pos, delta)
 	cam.zoom = lerp(cam.zoom, zoom * Vector2.ONE, delta)
 
 func update_beam():
