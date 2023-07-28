@@ -10,7 +10,7 @@ const INPUT_DELAY = 0.1
 const SPAWN_OFFSET = 200
 
 const CAMERA_LOW_OFFSET = 100
-const CAMERA_HIGH_OFFSET = 100
+const CAMERA_HIGH_OFFSET = 1.5 * SPAWN_OFFSET
 const CAMERA_MIN_ZOOM = 1
 const CAMERA_MAX_ZOOM = 3
 
@@ -23,7 +23,6 @@ func _ready():
 var last_piece: RigidBody2D
 var last_piece_data: PieceLoad.PieceData
 var next_piece_data: PieceLoad.PieceData
-var last_highest_y: float
 
 var prev_rotation: float
 var next_rotation: float
@@ -87,7 +86,7 @@ func update_movement(delta):
 
 func update_camera(delta):
 	var cam = $Level/Camera as Camera2D
-	var highest = last_highest_y - CAMERA_HIGH_OFFSET
+	var highest = find_highest_y() - CAMERA_HIGH_OFFSET
 	var lowest = CAMERA_LOW_OFFSET
 	var mid = (highest + lowest) / 2
 	var height = abs(highest - lowest)
@@ -119,8 +118,7 @@ func spawn_next_piece():
 	last_piece.freeze = true
 	last_piece.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
 	reset_rotation()
-	last_highest_y = find_highest_y() - SPAWN_OFFSET
-	last_piece.move_local_y(last_highest_y)
+	last_piece.move_local_y(find_highest_y() - SPAWN_OFFSET)
 	last_piece.get_child(0).disabled = false
 	last_piece.get_child(1).disabled = true
 	$Level/ExistingPieces.add_child(last_piece)
@@ -137,7 +135,8 @@ func pick_next_piece():
 func find_highest_y() -> float:
 	var highest = 0
 	for child in get_node("Level/ExistingPieces").get_children():
-		highest = min(child.position.y, highest)
+		if child != last_piece:
+			highest = min(child.position.y, highest)
 	return highest
 
 func reset_rotation():
