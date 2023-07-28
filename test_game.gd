@@ -21,7 +21,16 @@ const CAMERA_MAX_ZOOM = 3
 var piece_loader = PieceLoad.new()
 var nudge_effect = preload("res://effects/nudge.tscn")
 
+@onready var piece_counter = $UI/PieceCount as Label
+@onready var next_piece_texture = $UI/NextPieceContainer/VBox/Texture as TextureRect
+@onready var heart_box = $UI/HeartContainer/Margin/HBox as Node2D # doesn't work???
+@onready var existing_pieces = $Level/ExistingPieces as Node2D
+@onready var camera = $Level/Camera as Camera2D
+@onready var drop_audio = $Level/DropAudio as AudioStreamPlayer2D
+@onready var beam = $Level/BeamBorder as Node2D
+
 func _ready():
+	heart_box = $UI/HeartContainer/Margin/HBox
 	pick_next_piece()
 	spawn_next_piece()
 
@@ -53,7 +62,7 @@ func _process(delta):
 	update_ui()
 
 func update_ui():
-	$UI/PieceCount.text = str($Level/ExistingPieces.get_child_count() - 1)
+	piece_counter.text = str(existing_pieces.get_child_count() - 1)
 
 func update_rotation(delta):
 	if not rotate:
@@ -109,7 +118,6 @@ func update_movement(delta):
 		spawn_next_piece()
 
 func update_camera(delta):
-	var cam = $Level/Camera as Camera2D
 	var highest = find_highest_y() - CAMERA_HIGH_OFFSET
 	var lowest = CAMERA_LOW_OFFSET
 	var mid = (highest + lowest) / 2
@@ -121,11 +129,10 @@ func update_camera(delta):
 	if is_equal_approx(zoom, CAMERA_MIN_ZOOM):
 		pos = Vector2(0, highest + view_h / zoom / 2)
 
-	cam.position = lerp(cam.position, pos, delta)
-	cam.zoom = lerp(cam.zoom, zoom * Vector2.ONE, delta)
+	camera.position = lerp(camera.position, pos, delta)
+	camera.zoom = lerp(camera.zoom, zoom * Vector2.ONE, delta)
 
 func update_beam():
-	var beam = get_node("Level/BeamBorder") as Node2D
 	beam.position = last_piece.position
 	var width = last_piece_data.width(last_piece.rotation)
 	beam.scale = Vector2(width, 1000000)
@@ -136,7 +143,7 @@ func spawn_next_piece():
 		last_piece.linear_velocity = Vector2.ZERO
 		last_piece.get_child(0).disabled = true
 		last_piece.get_child(1).disabled = false
-		$Level/DropAudio.play()
+		drop_audio.play()
 	last_piece_data = next_piece_data
 	last_piece = last_piece_data.scene.instantiate()
 	last_piece.freeze = true
@@ -145,20 +152,19 @@ func spawn_next_piece():
 	last_piece.move_local_y(find_highest_y() - SPAWN_OFFSET)
 	last_piece.get_child(0).disabled = false
 	last_piece.get_child(1).disabled = true
-	$Level/ExistingPieces.add_child(last_piece)
+	existing_pieces.add_child(last_piece)
 	pick_next_piece()
 
 func pick_next_piece():
 	next_piece_data = piece_loader.random_piece()
-	var next_piece_box = get_node("UI/NextPieceContainer/VBox/Texture") as TextureRect
 	var next_piece = next_piece_data.scene.instantiate()
 	var piece_sprite = next_piece.get_child(2) as Sprite2D
-	next_piece_box.texture = piece_sprite.texture
+	next_piece_texture.texture = piece_sprite.texture
 	next_piece.queue_free()
 
 func find_highest_y() -> float:
 	var highest = 0
-	for child in get_node("Level/ExistingPieces").get_children():
+	for child in existing_pieces.get_children():
 		if child != last_piece:
 			highest = min(child.position.y, highest)
 	return highest
@@ -170,11 +176,11 @@ func reset_rotation():
 	rotate = false
 
 func update_health(delta):
-	var n = $Level/ExistingPieces.get_child_count()
+	var n = existing_pieces.get_child_count()
 	grace_time -= delta
 	if n < n_pieces and grace_time <= 0:
 		health = clampi(health - 1, 0, MAX_HEALTH)
-		$UI/HeartContainer/Margin/HBox.get_child(health).visible = false
+		heart_box.get_child(health).visible = false
 		grace_time = GRACE_TIME
 	if health <= 0:
 		get_tree().reload_current_scene()
