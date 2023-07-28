@@ -1,34 +1,34 @@
 [gd_scene load_steps=9 format=3 uid="uid://dplaqrkj7kcms"]
 
-[ext_resource type="Script" path="res://test_game.gd" id="1_7ure7"]
-[ext_resource type="PackedScene" uid="uid://c5qn7mutme6vc" path="res://objects/islands/flat.tscn" id="1_jvp4t"]
-[ext_resource type="PackedScene" uid="uid://c6r7saxpscnfv" path="res://objects/border/world_border.tscn" id="3_w8h5n"]
-[ext_resource type="PackedScene" uid="uid://cjln11w8wsifb" path="res://objects/border/beam_border.tscn" id="4_gke7o"]
-[ext_resource type="AudioStream" uid="uid://cfahewdy234o1" path="res://sounds/drop.wav" id="5_lhp3p"]
-[ext_resource type="PackedScene" uid="uid://dblt1py4a0toj" path="res://interface/pause_popup.tscn" id="5_rnsru"]
-[ext_resource type="PackedScene" uid="uid://dthjcv0krwl2k" path="res://interface/health_bar.tscn" id="7_1k16p"]
-[ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="7_17nn2"]
+[ext_resource type="Script" path="res://games/survival.gd" id="1_xq5di"]
+[ext_resource type="PackedScene" uid="uid://c5qn7mutme6vc" path="res://objects/islands/flat.tscn" id="2_vwt3v"]
+[ext_resource type="PackedScene" uid="uid://c6r7saxpscnfv" path="res://objects/border/world_border.tscn" id="3_y0ytx"]
+[ext_resource type="PackedScene" uid="uid://cjln11w8wsifb" path="res://objects/border/beam_border.tscn" id="4_uaaxp"]
+[ext_resource type="AudioStream" uid="uid://cfahewdy234o1" path="res://sounds/drop.wav" id="5_b0t7w"]
+[ext_resource type="PackedScene" uid="uid://dblt1py4a0toj" path="res://interface/pause_popup.tscn" id="6_riuyp"]
+[ext_resource type="PackedScene" uid="uid://dthjcv0krwl2k" path="res://interface/health_bar.tscn" id="7_eg37j"]
+[ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="8_ry57l"]
 
-[node name="TestGame" type="Node2D"]
-script = ExtResource("1_7ure7")
+[node name="Survival" type="Node2D"]
+script = ExtResource("1_xq5di")
 
 [node name="Level" type="Node2D" parent="."]
 
-[node name="FlatIsland" parent="Level" instance=ExtResource("1_jvp4t")]
+[node name="FlatIsland" parent="Level" instance=ExtResource("2_vwt3v")]
 position = Vector2(0, 15)
 
 [node name="Camera" type="Camera2D" parent="Level"]
 
-[node name="WorldBorder" parent="Level" instance=ExtResource("3_w8h5n")]
+[node name="WorldBorder" parent="Level" instance=ExtResource("3_y0ytx")]
 position = Vector2(0, 45)
 
 [node name="ExistingPieces" type="Node2D" parent="Level"]
 
-[node name="BeamBorder" parent="Level" instance=ExtResource("4_gke7o")]
+[node name="BeamBorder" parent="Level" instance=ExtResource("4_uaaxp")]
 position = Vector2(0, 76)
 
 [node name="DropAudio" type="AudioStreamPlayer2D" parent="Level"]
-stream = ExtResource("5_lhp3p")
+stream = ExtResource("5_b0t7w")
 
 [node name="HealthCooldown" type="Timer" parent="Level"]
 wait_time = 3.0
@@ -36,7 +36,7 @@ one_shot = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="HUD" instance=ExtResource("5_rnsru")]
+[node name="PauseMenu" parent="HUD" instance=ExtResource("6_riuyp")]
 
 [node name="NextPieceContainer" type="MarginContainer" parent="HUD"]
 anchors_preset = 5
@@ -77,7 +77,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HealthBar" parent="HUD" instance=ExtResource("7_1k16p")]
+[node name="HealthBar" parent="HUD" instance=ExtResource("7_eg37j")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -86,7 +86,7 @@ scroll_ignore_camera_zoom = true
 motion_scale = Vector2(1, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource("7_17nn2")
+texture = ExtResource("8_ry57l")
 
 [connection signal="piece_fell" from="Level/WorldBorder" to="." method="_on_world_border_piece_fell"]
 [connection signal="timeout" from="Level/HealthCooldown" to="." method="_on_health_cooldown_timeout"]

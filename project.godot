@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Freaky Towers"
-run/main_scene="res://test_game.tscn"
+run/main_scene="res://interface/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[gui]
+
+theme/custom_font="res://fonts/Lacquer/Lacquer-Regular.ttf"
 
 [input]
 
