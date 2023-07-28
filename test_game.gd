@@ -16,6 +16,7 @@ const CAMERA_MIN_ZOOM = 1
 const CAMERA_MAX_ZOOM = 3
 
 var piece_loader = PieceLoad.new()
+var nudge_effect = preload("res://effects/nudge.tscn")
 
 func _ready():
 	pick_next_piece()
@@ -68,12 +69,18 @@ func update_movement(delta):
 	next_input_delay -= delta
 	nudge_delay -= delta
 
+	var do_nudge = func(dir):
+		nudge_delay = NUDGE_DELAY
+		nudge_direction = dir
+		var e = nudge_effect.instantiate() as CPUParticles2D
+		e.direction = -nudge_direction
+		e.rotation = -last_piece.rotation
+		last_piece.add_child(e)
+
 	if Input.is_action_just_pressed("nudge_right"):
-		nudge_delay = NUDGE_DELAY
-		nudge_direction = Vector2.RIGHT
+		do_nudge.call(Vector2.RIGHT)
 	if Input.is_action_just_pressed("nudge_left"):
-		nudge_delay = NUDGE_DELAY
-		nudge_direction = Vector2.LEFT
+		do_nudge.call(Vector2.LEFT)
 	if nudge_delay > 0:
 		last_piece.move_and_collide(nudge_direction * SIDE_STEP)
 
