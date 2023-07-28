@@ -1,7 +1,6 @@
 extends Node2D
 
 const MAX_HEALTH = 3
-const GRACE_TIME = 3
 
 const SIDE_STEP = 5
 const DROP_SPEED = 50
@@ -28,6 +27,7 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var camera = $Level/Camera as Camera2D
 @onready var drop_audio = $Level/DropAudio as AudioStreamPlayer2D
 @onready var beam = $Level/BeamBorder as Node2D
+@onready var health_cooldown = $Level/HealthCooldown as Timer
 
 func _ready():
 	heart_box = $UI/HeartContainer/Margin/HBox
@@ -35,8 +35,6 @@ func _ready():
 	spawn_next_piece()
 
 var health: int = MAX_HEALTH
-var grace_time = 0
-var n_pieces: float
 
 var last_piece: RigidBody2D
 var last_piece_data: PieceLoad.PieceData
@@ -52,7 +50,6 @@ var nudge_delay: float
 var nudge_direction: Vector2
 
 func _process(delta):
-	update_health(delta)
 	if last_piece == null:
 		spawn_next_piece()
 	update_movement(delta)
@@ -175,13 +172,10 @@ func reset_rotation():
 	elapsed = 0
 	rotate = false
 
-func update_health(delta):
-	var n = existing_pieces.get_child_count()
-	grace_time -= delta
-	if n < n_pieces and grace_time <= 0:
+func _on_world_border_piece_fell():
+	if health_cooldown.is_stopped():
 		health = clampi(health - 1, 0, MAX_HEALTH)
 		heart_box.get_child(health).visible = false
-		grace_time = GRACE_TIME
+		health_cooldown.start()
 	if health <= 0:
 		get_tree().reload_current_scene()
-	n_pieces = n

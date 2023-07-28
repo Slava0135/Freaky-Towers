@@ -1,15 +1,18 @@
 extends Area2D
 
+signal piece_fell
+
 var effect = preload("res://effects/vanish.tscn")
 
 func _ready():
-	body_entered.connect(remove_body)
+	pass
 
 func _process(delta):
 	pass
 
-func remove_body(body: Node2D):
+func _on_body_entered(body):
 	var e = effect.instantiate() as Node2D
+	emit_signal("piece_fell")
 	add_sibling(e)
 	e.position = body.position
 	body.queue_free()
