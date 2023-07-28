@@ -6,6 +6,7 @@ const FAST_DROP_SPEED = 3 * DROP_SPEED
 const ROTATION_SPEED = 8
 
 const INPUT_DELAY = 0.1
+const NUDGE_DELAY = 0.1
 
 const SPAWN_OFFSET = 200
 
@@ -30,6 +31,8 @@ var elapsed: float
 var rotate: bool
 
 var next_input_delay: float
+var nudge_delay: float
+var nudge_direction: Vector2
 
 func _process(delta):
 	if last_piece == null:
@@ -62,27 +65,33 @@ func update_rotation(delta):
 			rotate = false
 
 func update_movement(delta):
+	next_input_delay -= delta
+	nudge_delay -= delta
+
+	if Input.is_action_just_pressed("nudge_right"):
+		nudge_delay = NUDGE_DELAY
+		nudge_direction = Vector2.RIGHT
+	if Input.is_action_just_pressed("nudge_left"):
+		nudge_delay = NUDGE_DELAY
+		nudge_direction = Vector2.LEFT
+	if nudge_delay > 0:
+		last_piece.move_and_collide(nudge_direction * SIDE_STEP)
+
 	var collision
 	if Input.is_action_pressed("fast_drop"):
 		collision = last_piece.move_and_collide(Vector2(0, FAST_DROP_SPEED * delta))
 	else:
 		collision = last_piece.move_and_collide(Vector2(0, DROP_SPEED * delta))
 
-	next_input_delay -= delta
-	if next_input_delay <= 0 and Input.is_action_pressed("move_right"):
+	if next_input_delay <= 0 and nudge_delay <= 0 and Input.is_action_pressed("move_right"):
 		collision = last_piece.move_and_collide(Vector2(SIDE_STEP, 0))
 		next_input_delay = INPUT_DELAY
-	if next_input_delay <= 0 and Input.is_action_pressed("move_left"):
+	if next_input_delay <= 0 and nudge_delay <= 0 and Input.is_action_pressed("move_left"):
 		collision = last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
 		next_input_delay = INPUT_DELAY
 
-	if collision != null:
+	if nudge_delay <= 0 and collision != null:
 		spawn_next_piece()
-
-	if Input.is_action_just_pressed("nudge_right"):
-		last_piece.move_and_collide(Vector2(SIDE_STEP, 0), false, 0, false)
-	if Input.is_action_just_pressed("nudge_left"):
-		last_piece.move_and_collide(Vector2(-SIDE_STEP, 0), false, 0, false)
 
 func update_camera(delta):
 	var cam = $Level/Camera as Camera2D
