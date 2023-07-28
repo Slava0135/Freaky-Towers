@@ -14,13 +14,13 @@ class PieceData:
 		return rot_width[roundi(sin(rotation))]
 
 var pieces = [
-#		PieceData.create(preload("O.tscn"), [2, 2]),
+		PieceData.create(preload("O.tscn"), [2, 2]),
 		PieceData.create(preload("I.tscn"), [1, 4]),
-#		PieceData.create(preload("L.tscn"), [2, 3]),
-#		PieceData.create(preload("J.tscn"), [2, 3]),
-#		PieceData.create(preload("T.tscn"), [3, 2]),
-#		PieceData.create(preload("S.tscn"), [3, 2]),
-#		PieceData.create(preload("Z.tscn"), [3, 2]),
+		PieceData.create(preload("L.tscn"), [2, 3]),
+		PieceData.create(preload("J.tscn"), [2, 3]),
+		PieceData.create(preload("T.tscn"), [3, 2]),
+		PieceData.create(preload("S.tscn"), [3, 2]),
+		PieceData.create(preload("Z.tscn"), [3, 2]),
 	]
 
 func random_piece() -> PieceData:
