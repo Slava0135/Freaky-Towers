@@ -1,5 +1,8 @@
 extends Node2D
 
+const MAX_HEALTH = 3
+const GRACE_TIME = 3
+
 const SIDE_STEP = 5
 const DROP_SPEED = 50
 const FAST_DROP_SPEED = 3 * DROP_SPEED
@@ -22,6 +25,10 @@ func _ready():
 	pick_next_piece()
 	spawn_next_piece()
 
+var health: int = MAX_HEALTH
+var grace_time = 0
+var n_pieces: float
+
 var last_piece: RigidBody2D
 var last_piece_data: PieceLoad.PieceData
 var next_piece_data: PieceLoad.PieceData
@@ -36,6 +43,7 @@ var nudge_delay: float
 var nudge_direction: Vector2
 
 func _process(delta):
+	update_health(delta)
 	if last_piece == null:
 		spawn_next_piece()
 	update_movement(delta)
@@ -160,3 +168,12 @@ func reset_rotation():
 	next_rotation = 0
 	elapsed = 0
 	rotate = false
+
+func update_health(delta):
+	var n = $Level/ExistingPieces.get_child_count()
+	grace_time -= delta
+	if n < n_pieces and grace_time <= 0:
+		health = clampi(health - 1, 0, MAX_HEALTH)
+		$UI/HeartContainer/Margin/HBox.get_child(health).visible = false
+		grace_time = GRACE_TIME
+	n_pieces = n
