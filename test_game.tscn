@@ -73,10 +73,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(1, 0.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("7_17nn2")
