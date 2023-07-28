@@ -8,8 +8,6 @@ const ROTATION_SPEED = 8
 const INPUT_DELAY = 0.1
 const NUDGE_DELAY = 0.1
 
-const NUDGE_IMPULSE = 100
-
 const SPAWN_OFFSET = 200
 
 const CAMERA_LOW_OFFSET = 100
@@ -35,7 +33,6 @@ var rotate: bool
 var next_input_delay: float
 var nudge_delay: float
 var nudge_direction: Vector2
-var nudge_collided: bool
 
 func _process(delta):
 	if last_piece == null:
@@ -72,13 +69,13 @@ func update_movement(delta):
 	nudge_delay -= delta
 
 	if Input.is_action_just_pressed("nudge_right"):
+		nudge_delay = NUDGE_DELAY
 		nudge_direction = Vector2.RIGHT
-		nudge_delay = NUDGE_DELAY
 	if Input.is_action_just_pressed("nudge_left"):
-		nudge_direction = Vector2.LEFT
 		nudge_delay = NUDGE_DELAY
+		nudge_direction = Vector2.LEFT
 	if nudge_delay > 0:
-		nudge_collided = nudge_collided or last_piece.move_and_collide(nudge_direction * SIDE_STEP)
+		last_piece.move_and_collide(nudge_direction * SIDE_STEP)
 
 	var collision
 	if Input.is_action_pressed("fast_drop"):
@@ -93,9 +90,8 @@ func update_movement(delta):
 		collision = last_piece.move_and_collide(Vector2(-SIDE_STEP, 0))
 		next_input_delay = INPUT_DELAY
 
-	if nudge_delay <= 0 and (collision != null or nudge_collided):
+	if nudge_delay <= 0 and collision != null:
 		spawn_next_piece()
-		nudge_collided = false
 
 func update_camera(delta):
 	var cam = $Level/Camera as Camera2D
@@ -125,8 +121,6 @@ func spawn_next_piece():
 		last_piece.linear_velocity = Vector2.ZERO
 		last_piece.get_child(0).disabled = true
 		last_piece.get_child(1).disabled = false
-		if nudge_collided:
-			last_piece.apply_impulse(nudge_direction * NUDGE_IMPULSE)
 		$Level/DropAudio.play()
 	last_piece_data = next_piece_data
 	last_piece = last_piece_data.scene.instantiate()
