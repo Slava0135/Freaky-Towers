@@ -20,9 +20,9 @@ const CAMERA_MAX_ZOOM = 3
 var piece_loader = PieceLoad.new()
 var nudge_effect = preload("res://effects/nudge.tscn")
 
-@onready var piece_counter = $UI/PieceCount as Label
-@onready var next_piece_texture = $UI/NextPieceContainer/VBox/Texture as TextureRect
-@onready var health_bar = $UI/HealthBar as HealthBar
+@onready var piece_counter = $HUD/PieceCount as Label
+@onready var next_piece_texture = $HUD/NextPieceContainer/VBox/Texture as TextureRect
+@onready var health_bar = $HUD/HealthBar as HealthBar
 @onready var existing_pieces = $Level/ExistingPieces as Node2D
 @onready var camera = $Level/Camera as Camera2D
 @onready var drop_audio = $Level/DropAudio as AudioStreamPlayer2D

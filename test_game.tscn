@@ -34,11 +34,11 @@ stream = ExtResource("5_lhp3p")
 wait_time = 3.0
 one_shot = true
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("5_rnsru")]
+[node name="PauseMenu" parent="HUD" instance=ExtResource("5_rnsru")]
 
-[node name="NextPieceContainer" type="MarginContainer" parent="UI"]
+[node name="NextPieceContainer" type="MarginContainer" parent="HUD"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -48,20 +48,20 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 10
 
-[node name="VBox" type="VBoxContainer" parent="UI/NextPieceContainer"]
+[node name="VBox" type="VBoxContainer" parent="HUD/NextPieceContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/NextPieceContainer/VBox"]
+[node name="Label" type="Label" parent="HUD/NextPieceContainer/VBox"]
 layout_mode = 2
 text = "Next"
 horizontal_alignment = 1
 
-[node name="Texture" type="TextureRect" parent="UI/NextPieceContainer/VBox"]
+[node name="Texture" type="TextureRect" parent="HUD/NextPieceContainer/VBox"]
 layout_mode = 2
 stretch_mode = 5
 
-[node name="PieceCount" type="Label" parent="UI"]
+[node name="PieceCount" type="Label" parent="HUD"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -77,7 +77,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HealthBar" parent="UI" instance=ExtResource("7_1k16p")]
+[node name="HealthBar" parent="HUD" instance=ExtResource("7_1k16p")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
