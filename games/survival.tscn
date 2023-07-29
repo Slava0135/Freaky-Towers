@@ -94,5 +94,6 @@ texture = ExtResource("8_ry57l")
 [connection signal="piece_fell" from="Level/WorldBorder" to="." method="_on_world_border_piece_fell"]
 [connection signal="timeout" from="Level/HealthCooldown" to="." method="_on_health_cooldown_timeout"]
 [connection signal="continue_game" from="HUD/PauseMenu" to="." method="_on_pause_menu_continue_game"]
+[connection signal="leave_game" from="HUD/PauseMenu" to="." method="_on_pause_menu_leave_game"]
 [connection signal="restart_game" from="HUD/PauseMenu" to="." method="_on_pause_menu_restart_game"]
 [connection signal="pause_game" from="HUD/PauseButton" to="." method="_on_pause_button_pause_game"]

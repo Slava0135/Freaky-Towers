@@ -59,4 +59,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="VBox/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="VBox/ContinueButton" to="." method="_on_continue_button_pressed"]

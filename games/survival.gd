@@ -195,3 +195,6 @@ func _on_pause_menu_continue_game():
 
 func _on_pause_menu_restart_game():
 	get_tree().reload_current_scene()
+
+func _on_pause_menu_leave_game():
+	get_tree().change_scene_to_file("res://interface/main_menu.tscn")
