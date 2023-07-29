@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://4uee0ojyk018"]
+[gd_scene load_steps=3 format=3 uid="uid://4uee0ojyk018"]
 
 [ext_resource type="Script" path="res://interface/pause_menu.gd" id="1_t2nch"]
+[ext_resource type="Shortcut" uid="uid://d1asuhonc8ukp" path="res://interface/shortcuts/pause_shortcut.tres" id="2_5by6d"]
 
 [node name="PauseMenu" type="PanelContainer"]
 process_mode = 2
@@ -45,6 +46,7 @@ layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBox"]
 layout_mode = 2
+shortcut = ExtResource("2_5by6d")
 text = "Continue
 "
 
