@@ -12,7 +12,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	var e = effect.instantiate() as Node2D
-	emit_signal("piece_fell")
+	piece_fell.emit()
 	add_sibling(e)
 	e.position = body.position
 	body.queue_free()

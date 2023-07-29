@@ -12,12 +12,12 @@ func _process(delta):
 
 func _on_continue_button_pressed():
 	get_tree().paused = false
-	emit_signal("continue_game")
+	continue_game.emit()
 
 func _on_restart_button_pressed():
 	get_tree().paused = false
-	emit_signal("restart_game")
+	restart_game.emit()
 
 func _on_main_menu_button_pressed():
 	get_tree().paused = false
-	emit_signal("leave_game")
+	leave_game.emit()

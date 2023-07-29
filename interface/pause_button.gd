@@ -7,7 +7,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("open_menu"):
-		emit_signal("pause_game")
+		pause_game.emit()
 
 func _on_pressed():
-	emit_signal("pause_game")
+	pause_game.emit()
