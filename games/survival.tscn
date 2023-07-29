@@ -35,6 +35,10 @@ stream = ExtResource("5_b0t7w")
 wait_time = 3.0
 one_shot = true
 
+[node name="GameOverTimer" type="Timer" parent="Level"]
+wait_time = 3.0
+one_shot = true
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="NextPieceContainer" type="MarginContainer" parent="HUD"]
@@ -93,6 +97,7 @@ texture = ExtResource("8_ry57l")
 
 [connection signal="piece_fell" from="Level/WorldBorder" to="." method="_on_world_border_piece_fell"]
 [connection signal="timeout" from="Level/HealthCooldown" to="." method="_on_health_cooldown_timeout"]
+[connection signal="timeout" from="Level/GameOverTimer" to="." method="_on_game_over_timer_timeout"]
 [connection signal="continue_game" from="HUD/PauseMenu" to="." method="_on_pause_menu_continue_game"]
 [connection signal="leave_game" from="HUD/PauseMenu" to="." method="_on_pause_menu_leave_game"]
 [connection signal="restart_game" from="HUD/PauseMenu" to="." method="_on_pause_menu_restart_game"]

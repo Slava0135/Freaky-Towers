@@ -30,12 +30,14 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var health_cooldown = $Level/HealthCooldown as Timer
 @onready var pause_button = $HUD/PauseButton as Control
 @onready var pause_menu = $HUD/PauseMenu as PauseMenu
+@onready var game_over_timer = $Level/GameOverTimer as Timer
 
 func _ready():
 	pick_next_piece()
 	spawn_next_piece()
 
 var health: int = MAX_HEALTH
+var game_over: bool
 var best_score: int
 
 var last_piece: RigidBody2D
@@ -52,6 +54,8 @@ var nudge_delay: float
 var nudge_direction: Vector2
 
 func _process(delta):
+	if game_over:
+		return
 	if last_piece == null:
 		spawn_next_piece()
 	update_movement(delta)
@@ -184,12 +188,16 @@ func _on_world_border_piece_fell():
 		health_bar.remove_heart(health)
 		health_cooldown.start()
 	if health <= 0:
-		get_tree().change_scene_to_file("res://interface/main_menu.tscn")
+		game_over = true
+		game_over_timer.start()
 
 func _on_health_cooldown_timeout():
 	health_bar.stop_animation()
 
 func _on_pause_button_pause_game():
+	pause_game()
+
+func pause_game():
 	pause_button.visible = false
 	pause_menu.visible = true
 	get_tree().paused = true
@@ -203,3 +211,6 @@ func _on_pause_menu_restart_game():
 
 func _on_pause_menu_leave_game():
 	get_tree().change_scene_to_file("res://interface/main_menu.tscn")
+
+func _on_game_over_timer_timeout():
+	pause_game()
