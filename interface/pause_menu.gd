@@ -1,5 +1,7 @@
 extends PanelContainer
 
+class_name PauseMenu
+
 signal continue_game
 signal restart_game
 signal leave_game
@@ -9,6 +11,9 @@ func _ready():
 
 func _process(delta):
 	pass
+
+func update_score(score: int):
+	$VBox/Score.text = str(score)
 
 func _on_continue_button_pressed():
 	get_tree().paused = false

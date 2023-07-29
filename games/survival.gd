@@ -29,13 +29,14 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var beam = $Level/BeamBorder as Node2D
 @onready var health_cooldown = $Level/HealthCooldown as Timer
 @onready var pause_button = $HUD/PauseButton as Control
-@onready var pause_menu = $HUD/PauseMenu as Control
+@onready var pause_menu = $HUD/PauseMenu as PauseMenu
 
 func _ready():
 	pick_next_piece()
 	spawn_next_piece()
 
 var health: int = MAX_HEALTH
+var best_score: int
 
 var last_piece: RigidBody2D
 var last_piece_data: PieceLoad.PieceData
@@ -57,10 +58,14 @@ func _process(delta):
 	update_rotation(delta)
 	update_camera(delta)
 	update_beam()
-	update_ui()
+	update_score()
 
-func update_ui():
-	piece_counter.text = str(existing_pieces.get_child_count() - 1)
+func update_score():
+	var score = existing_pieces.get_child_count() - 1
+	piece_counter.text = str(score)
+	if score > best_score:
+		best_score = score
+		pause_menu.update_score(score)
 
 func update_rotation(delta):
 	if not rotate:
