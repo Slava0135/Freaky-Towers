@@ -213,4 +213,5 @@ func _on_pause_menu_leave_game():
 	get_tree().change_scene_to_file("res://interface/main_menu.tscn")
 
 func _on_game_over_timer_timeout():
+	pause_menu.game_over()
 	pause_game()

@@ -15,6 +15,10 @@ func _process(delta):
 func update_score(score: int):
 	$VBox/Score.text = str(score)
 
+func game_over():
+	$VBox/ContinueButton.disabled = true
+	$VBox/Title.text = "GAME OVER"
+
 func _on_continue_button_pressed():
 	get_tree().paused = false
 	continue_game.emit()
