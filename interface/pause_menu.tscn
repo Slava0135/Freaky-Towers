@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://4uee0ojyk018"]
+[gd_scene load_steps=4 format=3 uid="uid://4uee0ojyk018"]
 
 [ext_resource type="Script" path="res://interface/pause_menu.gd" id="1_t2nch"]
-[ext_resource type="Shortcut" uid="uid://d1asuhonc8ukp" path="res://interface/shortcuts/pause_shortcut.tres" id="2_5by6d"]
+[ext_resource type="Shortcut" uid="uid://d1asuhonc8ukp" path="res://interface/shortcuts/pause.tres" id="2_dbemu"]
+[ext_resource type="Shortcut" uid="uid://fsxdfosrfpor" path="res://interface/shortcuts/restart.tres" id="2_qhbhy"]
 
 [node name="PauseMenu" type="PanelContainer"]
 process_mode = 2
@@ -35,6 +36,7 @@ layout_mode = 2
 
 [node name="RestartButton" type="Button" parent="VBox"]
 layout_mode = 2
+shortcut = ExtResource("2_qhbhy")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="VBox"]
@@ -46,7 +48,7 @@ layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBox"]
 layout_mode = 2
-shortcut = ExtResource("2_5by6d")
+shortcut = ExtResource("2_dbemu")
 text = "Continue
 "
 
