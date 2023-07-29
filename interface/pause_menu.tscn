@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://4uee0ojyk018"]
+
+[ext_resource type="Script" path="res://interface/pause_menu.gd" id="1_t2nch"]
+
+[node name="PauseMenu" type="PanelContainer"]
+process_mode = 2
+visible = false
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_t2nch")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="ScoreText" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Best Score
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ContinueSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Continue
+"
+
+[node name="TitleSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBox/ContinueButton" to="." method="_on_continue_button_pressed"]

@@ -28,6 +28,8 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var drop_audio = $Level/DropAudio as AudioStreamPlayer2D
 @onready var beam = $Level/BeamBorder as Node2D
 @onready var health_cooldown = $Level/HealthCooldown as Timer
+@onready var pause_button = $HUD/PauseButton as Control
+@onready var pause_menu = $HUD/PauseMenu as Control
 
 func _ready():
 	pick_next_piece()
@@ -181,3 +183,12 @@ func _on_world_border_piece_fell():
 
 func _on_health_cooldown_timeout():
 	health_bar.stop_animation()
+
+func _on_pause_button_pause_game():
+	pause_button.visible = false
+	pause_menu.visible = true
+	get_tree().paused = true
+
+func _on_pause_menu_continue_game():
+	pause_button.visible = true
+	pause_menu.visible = false
