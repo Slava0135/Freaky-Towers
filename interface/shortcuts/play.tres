@@ -1,0 +1,10 @@
+[gd_resource type="Shortcut" load_steps=3 format=3 uid="uid://stn5vira6l48"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_d46mx"]
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_qpd7r"]
+keycode = 32
+
+[resource]
+events = [SubResource("InputEventKey_d46mx"), SubResource("InputEventKey_qpd7r")]

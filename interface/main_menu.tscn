@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl3nsct4huvr1"]
+[gd_scene load_steps=4 format=3 uid="uid://dl3nsct4huvr1"]
 
 [ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="1_0fb8n"]
 [ext_resource type="Script" path="res://interface/main_menu.gd" id="1_d58ka"]
+[ext_resource type="Shortcut" uid="uid://stn5vira6l48" path="res://interface/shortcuts/play.tres" id="3_apkmf"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -56,6 +57,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
+shortcut = ExtResource("3_apkmf")
 text = "PLAY"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
