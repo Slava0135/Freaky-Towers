@@ -192,3 +192,6 @@ func _on_pause_button_pause_game():
 func _on_pause_menu_continue_game():
 	pause_button.visible = true
 	pause_menu.visible = false
+
+func _on_pause_menu_restart_game():
+	get_tree().reload_current_scene()
