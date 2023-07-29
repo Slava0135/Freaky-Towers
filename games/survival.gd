@@ -177,7 +177,7 @@ func _on_world_border_piece_fell():
 		health_bar.remove_heart(health)
 		health_cooldown.start()
 	if health <= 0:
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://interface/main_menu.tscn")
 
 func _on_health_cooldown_timeout():
 	health_bar.stop_animation()
