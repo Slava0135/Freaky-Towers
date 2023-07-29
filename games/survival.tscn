@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dplaqrkj7kcms"]
+[gd_scene load_steps=8 format=3 uid="uid://dplaqrkj7kcms"]
 
 [ext_resource type="Script" path="res://games/survival.gd" id="1_xq5di"]
 [ext_resource type="PackedScene" uid="uid://c5qn7mutme6vc" path="res://objects/islands/flat.tscn" id="2_vwt3v"]
 [ext_resource type="PackedScene" uid="uid://c6r7saxpscnfv" path="res://objects/border/world_border.tscn" id="3_y0ytx"]
 [ext_resource type="PackedScene" uid="uid://cjln11w8wsifb" path="res://objects/border/beam_border.tscn" id="4_uaaxp"]
 [ext_resource type="AudioStream" uid="uid://cfahewdy234o1" path="res://sounds/drop.wav" id="5_b0t7w"]
-[ext_resource type="PackedScene" uid="uid://dblt1py4a0toj" path="res://interface/pause_popup.tscn" id="6_riuyp"]
 [ext_resource type="PackedScene" uid="uid://dthjcv0krwl2k" path="res://interface/health_bar.tscn" id="7_eg37j"]
 [ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="8_ry57l"]
 
@@ -35,8 +34,6 @@ wait_time = 3.0
 one_shot = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="HUD" instance=ExtResource("6_riuyp")]
 
 [node name="NextPieceContainer" type="MarginContainer" parent="HUD"]
 anchors_preset = 5
@@ -78,6 +75,61 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HealthBar" parent="HUD" instance=ExtResource("7_eg37j")]
+
+[node name="PauseMenu" type="PanelContainer" parent="HUD"]
+process_mode = 2
+visible = false
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HUD/PauseMenu"]
+layout_mode = 2
+alignment = 2
+
+[node name="ScoreText" type="Label" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Best Score
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreSeperator" type="HSeparator" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="UnderContinue" type="HSeparator" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+text = "Continue
+"
+
+[node name="TitleSeparator" type="HSeparator" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HUD/PauseMenu/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
