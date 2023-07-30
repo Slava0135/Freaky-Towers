@@ -11,3 +11,6 @@ func _process(delta):
 
 func _on_play_button_pressed():
 	get_tree().change_scene_to_file("res://games/survival.tscn")
+
+func _on_credits_button_pressed():
+	get_tree().change_scene_to_file("res://interface/credits_menu.tscn")

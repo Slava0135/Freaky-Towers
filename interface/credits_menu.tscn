@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://by504u3jmc4yi"]
+
+[ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="1_8p4bh"]
+[ext_resource type="Script" path="res://interface/credits_menu.gd" id="1_ftepc"]
+[ext_resource type="FontFile" uid="uid://bexshtt3m4j13" path="res://fonts/Lunasima/Lunasima-Regular.ttf" id="2_0y2ru"]
+[ext_resource type="Shortcut" uid="uid://stn5vira6l48" path="res://interface/shortcuts/play.tres" id="4_vx3qb"]
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ftepc")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8p4bh")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0y2ru")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+shortcut = ExtResource("4_vx3qb")
+text = "back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
