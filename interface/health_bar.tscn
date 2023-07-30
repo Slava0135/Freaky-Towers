@@ -10,6 +10,8 @@ anchor_right = 1.0
 offset_left = -124.0
 offset_bottom = 46.0
 grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_x6xnb")
 
 [node name="Margin" type="MarginContainer" parent="."]
