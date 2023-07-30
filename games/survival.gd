@@ -21,9 +21,9 @@ var piece_loader = PieceLoad.new()
 var scores = Scores.new()
 var nudge_effect = preload("res://effects/nudge.tscn")
 
-@onready var piece_counter = $HUD/PieceCount as Label
+@onready var score_display = $HUD/Info/Score/Label as Label
 @onready var next_piece_texture = $HUD/NextPieceContainer/VBox/Texture as TextureRect
-@onready var health_bar = $HUD/HealthBar as HealthBar
+@onready var health_bar = $HUD/Info/HealthBar as HealthBar
 @onready var existing_pieces = $Level/ExistingPieces as Node2D
 @onready var camera = $Level/Camera as Camera2D
 @onready var drop_audio = $Level/DropAudio as AudioStreamPlayer2D
@@ -67,7 +67,7 @@ func _process(delta):
 
 func update_score():
 	var score = existing_pieces.get_child_count() - 1
-	piece_counter.text = str(score)
+	score_display.text = str(score)
 	if score > scores.best_score:
 		scores.update_score(score)
 
