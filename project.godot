@@ -15,6 +15,10 @@ run/main_scene="res://interface/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/handheld/orientation=1
+
 [gui]
 
 theme/custom_font="res://fonts/Lacquer/Lacquer-Regular.ttf"
