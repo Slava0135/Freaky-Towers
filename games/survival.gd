@@ -19,6 +19,7 @@ const CAMERA_MAX_ZOOM = 3
 
 var piece_loader = PieceLoad.new()
 var scores = Scores.new()
+var gamerules = Gamerules.new()
 var nudge_effect = preload("res://effects/nudge.tscn")
 
 @onready var score_display = $HUD/Info/Score/Label as Label
@@ -35,6 +36,8 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var touch_screen = $TouchScreen as CanvasLayer
 
 func _ready():
+	if gamerules.easy:
+		health_bar.hide()
 	pick_next_piece()
 	spawn_next_piece()
 
@@ -68,7 +71,7 @@ func _process(delta):
 func update_score():
 	var score = existing_pieces.get_child_count() - 1
 	score_display.text = str(score)
-	if score > scores.best_score:
+	if not gamerules.easy and score > scores.best_score:
 		scores.update_score(score)
 
 func update_rotation(delta):
@@ -183,6 +186,8 @@ func reset_rotation():
 	rotate = false
 
 func _on_world_border_piece_fell():
+	if gamerules.easy:
+		return
 	if health_cooldown.is_stopped():
 		health = clampi(health - 1, 0, MAX_HEALTH)
 		health_bar.remove_heart(health)

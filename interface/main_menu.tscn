@@ -43,23 +43,6 @@ TOWERS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 40
-shortcut = ExtResource("3_apkmf")
-text = "PLAY"
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -110,5 +93,30 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Credits"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[node name="PlayOptions" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -28.0
+offset_right = 46.5
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="PlayOptions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+shortcut = ExtResource("3_apkmf")
+text = "PLAY"
+
+[node name="FreeModeButton" type="CheckButton" parent="PlayOptions"]
+layout_mode = 2
+text = "Easy Mode"
+
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="PlayOptions/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="toggled" from="PlayOptions/FreeModeButton" to="." method="_on_free_mode_button_toggled"]
