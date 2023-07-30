@@ -94,7 +94,6 @@ vertical_alignment = 1
 
 [node name="HealthBar" parent="HUD/Info" instance=ExtResource("7_eg37j")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="TouchScreen" type="CanvasLayer" parent="."]
 
