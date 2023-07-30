@@ -34,10 +34,13 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var pause_menu = $HUD/PauseMenu as PauseMenu
 @onready var game_over_timer = $Level/GameOverTimer as Timer
 @onready var touch_screen = $TouchScreen as CanvasLayer
+@onready var easy_mode_label = $HUD/Info/EasyModeLabel as Label
 
 func _ready():
 	if gamerules.easy:
 		health_bar.hide()
+		easy_mode_label.show()
+		pause_menu.easy_mode()
 	pick_next_piece()
 	spawn_next_piece()
 
