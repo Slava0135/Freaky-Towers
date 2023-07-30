@@ -23,3 +23,7 @@ woosh.ogg - [Woosh 8.ogg by ihitokage](https://freesound.org/people/ihitokage/so
 Lacquer - [The Lacquer Project Authors](https://github.com/Lacquer-Font/Lacquer)
 
 Lunasima - [The Lunasima Project Authors](https://github.com/docrepair-fonts/lunasima-fonts)
+
+## Icons ##
+
+[Public Domain Icons & Pictograms](https://github.com/apancik/public-domain-icons)
