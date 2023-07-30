@@ -36,11 +36,13 @@ layout_mode = 2
 
 [node name="RestartButton" type="Button" parent="VBox"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 shortcut = ExtResource("2_qhbhy")
 text = "Restart"
 
 [node name="MainMenuButton" type="Button" parent="VBox"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Main Menu"
 
 [node name="ContinueSeparator" type="HSeparator" parent="VBox"]
@@ -48,6 +50,7 @@ layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBox"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
 shortcut = ExtResource("2_dbemu")
 text = "Continue
 "
@@ -57,10 +60,11 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 20
 text = "Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [connection signal="pressed" from="VBox/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBox/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

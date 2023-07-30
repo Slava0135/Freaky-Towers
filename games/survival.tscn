@@ -73,6 +73,7 @@ stretch_mode = 5
 [node name="PauseMenu" parent="HUD" instance=ExtResource("7_yg8g0")]
 
 [node name="PauseButton" parent="HUD" instance=ExtResource("7_h0htw")]
+theme_override_font_sizes/font_size = 40
 
 [node name="Info" type="VBoxContainer" parent="HUD"]
 anchors_preset = 1
@@ -118,8 +119,8 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/Right"]
-position = Vector2(-30, -30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-60, -80)
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("9_g0spl")
 action = "move_right"
 visibility_mode = 1
@@ -134,8 +135,8 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/Left"]
-position = Vector2(10, -30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(10, -80)
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("9_eqp78")
 action = "move_left"
 visibility_mode = 1
@@ -153,8 +154,8 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/RightNudge"]
-position = Vector2(-80, -120)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-130, -200)
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("11_ik8nl")
 action = "nudge_right"
 visibility_mode = 1
@@ -169,8 +170,8 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/LeftNudge"]
-position = Vector2(16, -120)
-scale = Vector2(0.5, 0.5)
+position = Vector2(10, -200)
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("12_8bofw")
 action = "nudge_left"
 visibility_mode = 1
@@ -188,8 +189,8 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/RightRotate"]
-position = Vector2(-120, -30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-200, -80)
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("11_xg2o3")
 action = "rotate_clockwise"
 visibility_mode = 1
@@ -204,8 +205,8 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/LeftRotate"]
-position = Vector2(100, -30)
-scale = Vector2(0.5, 0.5)
+position = Vector2(140, -80)
+scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("12_qouw4")
 action = "rotate_anticlockwise"
 visibility_mode = 1

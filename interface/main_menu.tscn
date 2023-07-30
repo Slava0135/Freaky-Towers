@@ -37,7 +37,7 @@ theme_override_constants/margin_top = 20
 
 [node name="Label" type="Label" parent="GameName"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "FREAKY
 TOWERS"
 horizontal_alignment = 1
@@ -77,6 +77,7 @@ vertical_alignment = 1
 layout_mode = 1
 offset_right = 83.0
 offset_bottom = 20.0
+theme_override_font_sizes/font_size = 30
 text = "Report Bug"
 uri = "https://github.com/Slava0135/Freaky-Towers/issues"
 
@@ -91,6 +92,7 @@ offset_left = -64.0
 offset_top = -28.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 40
 text = "Credits"
 
 [node name="PlayOptions" type="VBoxContainer" parent="."]
@@ -109,12 +111,13 @@ grow_vertical = 2
 
 [node name="PlayButton" type="Button" parent="PlayOptions"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 shortcut = ExtResource("3_apkmf")
 text = "PLAY"
 
 [node name="FreeModeButton" type="CheckButton" parent="PlayOptions"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Easy Mode"
 
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
