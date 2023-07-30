@@ -18,6 +18,7 @@ const CAMERA_MIN_ZOOM = 1
 const CAMERA_MAX_ZOOM = 3
 
 var piece_loader = PieceLoad.new()
+var scores = Scores.new()
 var nudge_effect = preload("res://effects/nudge.tscn")
 
 @onready var piece_counter = $HUD/PieceCount as Label
@@ -38,7 +39,6 @@ func _ready():
 
 var health: int = MAX_HEALTH
 var game_over: bool
-var best_score: int
 
 var last_piece: RigidBody2D
 var last_piece_data: PieceLoad.PieceData
@@ -67,9 +67,8 @@ func _process(delta):
 func update_score():
 	var score = existing_pieces.get_child_count() - 1
 	piece_counter.text = str(score)
-	if score > best_score:
-		best_score = score
-		pause_menu.update_score(score)
+	if score > scores.best_score:
+		scores.update_score(score)
 
 func update_rotation(delta):
 	if not rotate:
@@ -203,6 +202,7 @@ func _on_pause_button_pause_game():
 func pause_game():
 	pause_button.visible = false
 	pause_menu.visible = true
+	pause_menu.update_score(scores.best_score)
 	get_tree().paused = true
 
 func _on_pause_menu_continue_game():
