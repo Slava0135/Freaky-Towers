@@ -6,12 +6,6 @@ signal continue_game
 signal restart_game
 signal leave_game
 
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-
 func update_score(score: int):
 	$VBox/Score.text = str(score)
 

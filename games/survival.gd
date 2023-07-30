@@ -189,9 +189,9 @@ func _on_world_border_piece_fell():
 		health_cooldown.start()
 	if health <= 0:
 		game_over = true
-		beam.visible = false
+		beam.hide()
 		if last_piece != null:
-			last_piece.visible = false
+			last_piece.hide()
 		game_over_timer.start()
 
 func _on_health_cooldown_timeout():
@@ -201,15 +201,15 @@ func _on_pause_button_pause_game():
 	pause_game()
 
 func pause_game():
-	pause_button.visible = false
-	pause_menu.visible = true
+	pause_button.hide()
+	pause_menu.show()
 	pause_menu.update_score(scores.best_score)
 	touch_screen.hide()
 	get_tree().paused = true
 
 func _on_pause_menu_continue_game():
-	pause_button.visible = true
-	pause_menu.visible = false
+	pause_button.show()
+	pause_menu.hide()
 	touch_screen.show()
 
 func _on_pause_menu_restart_game():
