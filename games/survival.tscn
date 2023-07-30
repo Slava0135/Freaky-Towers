@@ -55,7 +55,7 @@ offset_left = -18.5
 offset_right = 18.5
 offset_bottom = 40.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 30
 
 [node name="VBox" type="VBoxContainer" parent="HUD/NextPieceContainer"]
 layout_mode = 2
