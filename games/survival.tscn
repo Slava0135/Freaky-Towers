@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dplaqrkj7kcms"]
+[gd_scene load_steps=16 format=3 uid="uid://dplaqrkj7kcms"]
 
 [ext_resource type="Script" path="res://games/survival.gd" id="1_xq5di"]
 [ext_resource type="PackedScene" uid="uid://c5qn7mutme6vc" path="res://objects/islands/flat.tscn" id="2_vwt3v"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://2bvtw4hrpkfb" path="res://backgrounds/night.jpg" id="8_ry57l"]
 [ext_resource type="Texture2D" uid="uid://b4llg23ct47jn" path="res://interface/icons/left.svg" id="9_eqp78"]
 [ext_resource type="Texture2D" uid="uid://dnmpg63p1fela" path="res://interface/icons/right.svg" id="9_g0spl"]
+[ext_resource type="Texture2D" uid="uid://d0p32o6ribo80" path="res://interface/icons/right_double.svg" id="11_ik8nl"]
 [ext_resource type="Texture2D" uid="uid://chprtfgbi25h0" path="res://interface/icons/right_rotate.svg" id="11_xg2o3"]
+[ext_resource type="Texture2D" uid="uid://ck8f2fognc6sg" path="res://interface/icons/left_double.svg" id="12_8bofw"]
 [ext_resource type="Texture2D" uid="uid://bwpytg8cxhuif" path="res://interface/icons/left_rotate.svg" id="12_qouw4"]
 
 [node name="Survival" type="Node2D"]
@@ -90,7 +92,9 @@ vertical_alignment = 1
 
 [node name="PauseButton" parent="HUD" instance=ExtResource("7_h0htw")]
 
-[node name="RightTouch" type="Control" parent="HUD"]
+[node name="TouchScreen" type="CanvasLayer" parent="."]
+
+[node name="Right" type="Control" parent="TouchScreen"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -102,14 +106,14 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/RightTouch"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/Right"]
 position = Vector2(-30, -30)
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("9_g0spl")
 action = "move_right"
 visibility_mode = 1
 
-[node name="LeftTouch" type="Control" parent="HUD"]
+[node name="Left" type="Control" parent="TouchScreen"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -118,14 +122,14 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/LeftTouch"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/Left"]
 position = Vector2(10, -30)
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("9_eqp78")
 action = "move_left"
 visibility_mode = 1
 
-[node name="RightRotateTouch" type="Control" parent="HUD"]
+[node name="RightNudge" type="Control" parent="TouchScreen"]
 layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
@@ -137,14 +141,14 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/RightRotateTouch"]
-position = Vector2(-120, -30)
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/RightNudge"]
+position = Vector2(-80, -120)
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("11_xg2o3")
-action = "rotate_clockwise"
+texture_normal = ExtResource("11_ik8nl")
+action = "nudge_right"
 visibility_mode = 1
 
-[node name="LeftRotateTouch" type="Control" parent="HUD"]
+[node name="LeftNudge" type="Control" parent="TouchScreen"]
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -153,7 +157,42 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="HUD/LeftRotateTouch"]
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/LeftNudge"]
+position = Vector2(16, -120)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("12_8bofw")
+action = "nudge_left"
+visibility_mode = 1
+
+[node name="RightRotate" type="Control" parent="TouchScreen"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/RightRotate"]
+position = Vector2(-120, -30)
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("11_xg2o3")
+action = "rotate_clockwise"
+visibility_mode = 1
+
+[node name="LeftRotate" type="Control" parent="TouchScreen"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchScreen/LeftRotate"]
 position = Vector2(100, -30)
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("12_qouw4")

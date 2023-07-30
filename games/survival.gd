@@ -32,6 +32,7 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var pause_button = $HUD/PauseButton as Control
 @onready var pause_menu = $HUD/PauseMenu as PauseMenu
 @onready var game_over_timer = $Level/GameOverTimer as Timer
+@onready var touch_screen = $TouchScreen as CanvasLayer
 
 func _ready():
 	pick_next_piece()
@@ -203,11 +204,13 @@ func pause_game():
 	pause_button.visible = false
 	pause_menu.visible = true
 	pause_menu.update_score(scores.best_score)
+	touch_screen.hide()
 	get_tree().paused = true
 
 func _on_pause_menu_continue_game():
 	pause_button.visible = true
 	pause_menu.visible = false
+	touch_screen.show()
 
 func _on_pause_menu_restart_game():
 	get_tree().reload_current_scene()
