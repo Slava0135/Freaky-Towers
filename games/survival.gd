@@ -191,7 +191,7 @@ func _on_world_border_piece_fell():
 		game_over = true
 		beam.visible = false
 		if last_piece != null:
-			last_piece.queue_free()
+			last_piece.visible = false
 		game_over_timer.start()
 
 func _on_health_cooldown_timeout():
