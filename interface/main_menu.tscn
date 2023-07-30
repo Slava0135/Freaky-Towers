@@ -90,6 +90,13 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ReportButton" type="LinkButton" parent="."]
+layout_mode = 1
+offset_right = 83.0
+offset_bottom = 20.0
+text = "Report Bug"
+uri = "https://github.com/Slava0135/Freaky-Towers/issues"
+
 [node name="CreditsButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 3
