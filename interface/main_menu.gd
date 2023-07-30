@@ -1,7 +1,9 @@
 extends Control
 
+var scores = Scores.new()
+
 func _ready():
-	pass
+	$PanelContainer/VBox/Score.text = str(scores.best_score)
 
 func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
