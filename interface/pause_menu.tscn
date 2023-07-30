@@ -32,7 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreSeparator" type="HSeparator" parent="VBox"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="RestartButton" type="Button" parent="VBox"]
@@ -47,7 +47,7 @@ theme_override_font_sizes/font_size = 20
 text = "Main Menu"
 
 [node name="ContinueSeparator" type="HSeparator" parent="VBox"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBox"]
@@ -58,7 +58,7 @@ text = "Continue
 "
 
 [node name="TitleSeparator" type="HSeparator" parent="VBox"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="Title" type="Label" parent="VBox"]
