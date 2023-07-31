@@ -1,4 +1,4 @@
-# Freaky-Towers
+# Freaky Towers
 
 [![available on itch.io](https://static.itch.io/images/badge.svg)](https://slava0135.itch.io/freaky-towers)
 
