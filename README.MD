@@ -8,11 +8,11 @@ Desktop and Mobile are supported
 
 ## Controls
 
-`A` or `LEFT` to move piece left
-`D` or `RIGHT` to move piece right
-`Q` or `DOWN` to rotate piece anticlockwise
-`E` or `UP` to rotate piece clockwise
-`SPACE` to drop piece fast
+* `A` or `LEFT` to move piece left
+* `D` or `RIGHT` to move piece right
+* `Q` or `DOWN` to rotate piece anticlockwise
+* `E` or `UP` to rotate piece clockwise
+* `SPACE` to drop piece fast
 
 Use touchscreen buttons on mobile (tap on screen to drop piece fast)
 
