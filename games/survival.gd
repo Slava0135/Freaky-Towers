@@ -95,6 +95,17 @@ func update_rotation(delta):
 			elapsed = 0
 			rotate = false
 
+func _unhandled_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			for touch_control in touch_screen.get_children():
+				var touch_button = touch_control.get_child(0) as TouchScreenButton
+				if touch_button.is_pressed():
+					return
+			Input.action_press("fast_drop")
+		else:
+			Input.action_release("fast_drop")
+
 func update_movement(delta):
 	next_input_delay -= delta
 	nudge_delay -= delta
