@@ -1,5 +1,7 @@
 # Freaky-Towers
 
+[![available on itch.io](https://static.itch.io/images/badge.svg)](https://slava0135.itch.io/freaky-towers)
+
 Physics puzzle game where you stack blocks on each other and watch them all go down (inspired by Tricky Towers)
 
 ## Platforms
