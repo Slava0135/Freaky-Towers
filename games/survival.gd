@@ -21,6 +21,8 @@ var piece_loader = PieceLoad.new()
 var scores = Scores.new()
 var gamerules = Gamerules.new()
 var nudge_effect = preload("res://effects/nudge.tscn")
+var highscore_screenshot = Texture.new()
+var current_highest = 0
 
 @onready var score_display = $HUD/Info/Score/Label as Label
 @onready var next_piece_texture = $HUD/NextPieceContainer/VBox/Texture as TextureRect
@@ -35,6 +37,8 @@ var nudge_effect = preload("res://effects/nudge.tscn")
 @onready var game_over_timer = $Level/GameOverTimer as Timer
 @onready var touch_screen = $TouchScreen as CanvasLayer
 @onready var easy_mode_label = $HUD/Info/EasyModeLabel as Label
+@onready var screenshot_sprite = $HUD/TextureRect as TextureRect
+@onready var screenshot_audio = $HUD/ScreenshotAudio as AudioStreamPlayer2D
 
 func _ready():
 	if gamerules.easy:
@@ -61,6 +65,11 @@ var nudge_delay: float
 var nudge_direction: Vector2
 
 func _process(delta):
+	
+	var scrmod = screenshot_sprite.modulate.r
+	if scrmod > 1:
+		screenshot_sprite.modulate = Color(scrmod-0.5, scrmod-0.5, scrmod-0.5)
+		
 	if game_over:
 		return
 	if last_piece == null:
@@ -70,13 +79,17 @@ func _process(delta):
 	update_camera(delta)
 	update_beam()
 	update_score()
-
+	
 func update_score():
 	var score = existing_pieces.get_child_count() - 1
 	score_display.text = str(score)
 	if not gamerules.easy and score > scores.best_score:
 		scores.update_score(score)
-
+		
+	if (score > current_highest):
+		current_highest = score
+		highscore_screenshot = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
+		
 func update_rotation(delta):
 	if not rotate:
 		if Input.is_action_just_pressed("rotate_clockwise"):
@@ -155,7 +168,7 @@ func update_camera(delta):
 
 	camera.position = lerp(camera.position, pos, delta)
 	camera.zoom = lerp(camera.zoom, zoom * Vector2.ONE, delta)
-
+	
 func update_beam():
 	beam.position = last_piece.position
 	var width = last_piece_data.width(last_piece.rotation)
@@ -207,11 +220,17 @@ func _on_world_border_piece_fell():
 		health_bar.remove_heart(health)
 		health_cooldown.start()
 	if health <= 0:
-		game_over = true
-		beam.hide()
-		if last_piece != null:
-			last_piece.hide()
-		game_over_timer.start()
+		if not game_over:
+			game_over = true
+			
+			screenshot_sprite.set_texture(highscore_screenshot)
+			screenshot_sprite.modulate = Color(8, 8, 8);
+			screenshot_audio.play()
+			
+			beam.hide()
+			if last_piece != null:
+				last_piece.hide()
+			game_over_timer.start()
 
 func _on_health_cooldown_timeout():
 	health_bar.stop_animation()
