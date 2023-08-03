@@ -10,19 +10,13 @@ const ACTIONS = {
 	"rotate_anticlockwise" : "Rotate Anticlockwise",
 }
 
-@onready var text = $PanelContainer/VBoxContainer/ScrollContainer/RichTextLabel as RichTextLabel
+@onready var text = $VBoxContainer/TabContainer/Controls/RichTextLabel as RichTextLabel
 
 func _ready():
-	text.push_paragraph(HORIZONTAL_ALIGNMENT_CENTER)
-	text.push_bold()
-	text.push_font_size(20)
-	text.append_text("CONTROLS\n")
-	text.pop()
-	text.pop()
 	text.push_table(2)
 	for act in ACTIONS:
 		text.push_cell()
-		text.append_text(ACTIONS.get(act))
+		text.append_text(ACTIONS.get(act) + "    ")
 		text.pop()
 		text.push_cell()
 		for ev in InputMap.action_get_events(act):
