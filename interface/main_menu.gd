@@ -19,3 +19,6 @@ func _on_credits_button_pressed():
 
 func _on_free_mode_button_toggled(button_pressed):
 	gamerules.update_mode(button_pressed)
+
+func _on_options_button_pressed():
+	get_tree().change_scene_to_file("res://interface/options_menu.tscn")

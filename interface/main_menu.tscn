@@ -120,6 +120,18 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Easy Mode"
 
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -56.0
+offset_right = 146.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
 [connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="PlayOptions/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="toggled" from="PlayOptions/FreeModeButton" to="." method="_on_free_mode_button_toggled"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_options_button_pressed"]
