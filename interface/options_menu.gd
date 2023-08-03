@@ -10,7 +10,7 @@ const ACTIONS = {
 	"rotate_anticlockwise" : "Rotate Anticlockwise",
 }
 
-@onready var text = $VBoxContainer/TabContainer/Controls/RichTextLabel as RichTextLabel
+@onready var text = $VBoxContainer/TabContainer/Controls as RichTextLabel
 
 func _ready():
 	text.push_table(2)

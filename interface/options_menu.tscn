@@ -36,15 +36,8 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Controls" type="TabBar" parent="VBoxContainer/TabContainer"]
+[node name="Controls" type="RichTextLabel" parent="VBoxContainer/TabContainer"]
 layout_mode = 2
-tab_close_display_policy = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/TabContainer/Controls"]
-layout_mode = 2
-offset_top = 4.0
-offset_right = 640.0
-offset_bottom = 552.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("3_s7a3n")
